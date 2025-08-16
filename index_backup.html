@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperCharge - Idea Similarity Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(238, 90, 36, 0.3);
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .timer::before {
+            content: '⏱️';
+            font-size: 1.2rem;
+        }
+        
+        .score {
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .score::before {
+            content: '🎯';
+            font-size: 1.2rem;
+        }
+        
+        .comparison-container {
+            position: relative;
+            height: 700px;
+            margin: 30px 0;
+            overflow: hidden;
+            padding-top: 60px;
+        }
+        
+        .idea-card {
+            position: absolute;
+            width: 100%;
+            min-height: 200px;
+            max-height: 280px;
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.2;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .idea-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .idea-card.top {
+            top: 0;
+        }
+        
+        .idea-card.bottom {
+            bottom: 140px;
+        }
+        
+        .card-emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .card-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .downvote-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 5;
+        }
+        
+        .downvote-btn:hover {
+            background: rgba(220, 38, 38, 1);
+            transform: scale(1.05);
+        }
+        
+        .rating-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 130px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px 25px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(238, 90, 36, 0.3);
+            z-index: 10;
+        }
+        
+        .rating-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accuracy-inline {
+            font-weight: bold;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        
+        .speed-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        
+        .rating-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .speed-inline {
+            font-weight: bold;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        
+        .timer-countdown {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffeb3b;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .timer-countdown.pulse {
+            animation: timerPulse 0.6s ease-out;
+        }
+        
+        @keyframes timerPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .rating-label {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .rating-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .rating-label-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .rating-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rating-btn:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .rating-btn:active {
+            transform: translateY(0);
+            background: rgba(255,255,255,0.4);
+        }
+        
+        .rating-btn.selected {
+            background: rgba(255,255,255,0.9);
+            color: #fd79a8;
+            border-color: white;
+            font-weight: 900;
+        }
+        
+        .rating-btn.flash {
+            animation: flashButton 0.3s ease;
+        }
+        
+        @keyframes flashButton {
+            0% { background: rgba(255,255,255,0.1); }
+            50% { background: rgba(255,255,255,0.9); color: #fd79a8; }
+            100% { background: rgba(255,255,255,0.1); color: white; }
+        }
+        
+        .accuracy-arrow {
+            margin-left: 5px;
+            font-size: 1rem;
+            display: inline-block;
+            animation-duration: 0.6s;
+            animation-fill-mode: forwards;
+        }
+        
+        .accuracy-arrow.up {
+            animation: arrowUp 0.6s ease-out;
+        }
+        
+        .accuracy-arrow.down {
+            animation: arrowDown 0.6s ease-out;
+        }
+        
+        @keyframes arrowUp {
+            0% { opacity: 0; transform: translateY(10px) scale(0.5); }
+            50% { opacity: 1; transform: translateY(-5px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-15px) scale(1); }
+        }
+        
+        @keyframes arrowDown {
+            0% { opacity: 0; transform: translateY(-10px) scale(0.5); }
+            50% { opacity: 1; transform: translateY(5px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(15px) scale(1); }
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 184, 148, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 184, 148, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ddd;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(135deg, #e17055, #d63031);
+            box-shadow: 0 8px 16px rgba(225, 112, 85, 0.3);
+        }
+        
+        .btn.primary:hover {
+            box-shadow: 0 12px 24px rgba(225, 112, 85, 0.4);
+        }
+        
+        .current-set {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .progress-display {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(116, 185, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .progress-item {
+            text-align: center;
+        }
+        
+        .progress-display .label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .progress-display .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .pair-counter {
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .speed-bonus {
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .speed-bonus::before {
+            content: '🚀';
+            font-size: 1.2rem;
+        }
+        
+        /* Animation classes */
+        .slide-up {
+            animation: slideUp 0.4s ease-out;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-320px);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(320px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        .fun-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fun-emoji" style="top: 20px; left: 30px;">🚀</div>
+        <div class="fun-emoji" style="top: 50px; right: 40px; animation-delay: 1s;">⚡</div>
+        <div class="fun-emoji" style="bottom: 100px; left: 50px; animation-delay: 2s;">🎮</div>
+        
+        <div class="header">
+            <h1>SuperCharge Challenge</h1>
+            <p>Rate how similar these two ideas are • Fast & Fun!</p>
+        </div>
+        
+        <div class="comparison-container">
+            <div class="idea-card top" id="idea-top"></div>
+            <div class="idea-card bottom" id="idea-bottom"></div>
+            
+            <div class="rating-section">
+                <div class="rating-top-row">
+                    <div class="accuracy-inline">
+                        🎯 <span id="accuracy">0</span>% 
+                        <span class="accuracy-arrow" id="accuracy-arrow"></span>
+                    </div>
+                    <div class="speed-section">
+                        <div class="speed-inline">
+                            Speed Multiplier 🚀 <span id="speed-multiplier">1.0x</span>
+                        </div>
+                        <div class="timer-countdown" id="timer-countdown">15:00</div>
+                    </div>
+                </div>
+                <div class="rating-buttons">
+                    <span class="rating-label-text">Different</span>
+                    <button class="rating-btn" data-rating="1">1</button>
+                    <button class="rating-btn" data-rating="2">2</button>
+                    <button class="rating-btn" data-rating="3">3</button>
+                    <button class="rating-btn" data-rating="4">4</button>
+                    <button class="rating-btn" data-rating="5">5</button>
+                    <span class="rating-label-text">Similar</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" id="restart">🎯 Restart</button>
+        </div>
+        
+        <div class="progress-display">
+            <div class="progress-item">
+                <div class="label">Pairs Done</div>
+                <div class="value" id="pairs-completed">0</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bag of Holding Ideas Pool (30 mechanistically complex ideas with emojis)
+        const IDEAS_POOL = [
+            "🏗️⚖️ Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When you retrieve the block at the top of the shaft, gravity immediately acts on its full mass, causing it to plummet downwards attached to a pulley and lever system. Just before impact, place it back in the bag, rendering it weightless. You can then effortlessly hoist the bag back to the top to repeat the process. This creates a trebuchet that can be re-cocked with almost no energy, powered entirely by repeatedly resetting the object's gravitational potential energy to launch massive projectiles.",
+            "🧪🌊 Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry (oobleck). When you get inside, you're suspended within this fluid. During sudden, high-G events like a fall or crash, your body's inertia would normally cause catastrophic injury. However, the shear stress from any rapid movement causes the non-Newtonian fluid to instantly become rigid, distributing the force evenly across your entire body. This effectively functions as a passive inertial dampener, allowing you to survive impacts that would otherwise be fatal by preventing your organs from moving relative to your skeleton.",
+            "❄️🧊 Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitrogen. Since objects inside the bag maintain their state indefinitely, the liquid nitrogen will remain at its cryogenic temperature of −196°C (−321°F) without boiling off or requiring external power. This creates a perfect, portable stasis chamber for preserving biological samples, organs, or even a person in a suitable containment suit for extended periods. The weightlessness makes handling the otherwise heavy and dangerous flask completely trivial.",
+            "🔔💥 Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrating intensely at its resonant frequency, then quickly seal the bag. The kinetic energy of the vibration is preserved perfectly within the extradimensional space, as there is no air to create drag or transmit the sound away. To deploy this stored energy, simply open the bag and aim the aperture at a target. The bell's surface instantly interacts with the outside air, releasing all its accumulated sonic energy in a single, devastating blast of sound pressure capable of shattering fortifications.",
+            "🌌🔵 Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to evacuate into the near-vacuum of the surroundings. Once evacuated, seal the bag. You now possess a portable, perfect vacuum chamber. The integrity of the extradimensional space ensures no atoms can leak back in over time. This can be used for advanced scientific applications like cold welding, creating flawless crystals, or instantly extinguishing any fire or combustion-based process by placing it inside and depriving it of all oxygen.",
+            "🌀⚡ Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an external motor or partner spin the pole at high speed. Because the combined mass of you and the bag is negligible, it requires very little energy to achieve an extremely high angular velocity. Inside the bag, you will be pressed against the side of the extradimensional space by a powerful simulated gravitational force, the magnitude of which is determined by the speed of rotation. This can be used for high-G training, separating materials of different densities, or conducting experiments in variable gravity.",
+            "💨🏔️ Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a location with significantly lower ambient pressure, such as a high mountain peak. When you rapidly unseal the bag, the higher-pressure air inside expands outwards explosively, creating a powerful concussive blast. The reverse is also possible: seal the bag at high altitude (low pressure) and open it at sea level. The higher-pressure outside air will rush in with violent force, creating a localized implosion capable of crushing objects placed directly at the opening.",
+            "🪢🧗‍♂️ Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the bag. You can now rappel down a cliff or into a chasm of virtually unlimited depth. The only weight you have to manage is the weight of the deployed section of rope; the immense weight of the thousands of feet of rope remaining in the bag is completely negated. This allows a single person to carry and deploy miles of rope that would normally weigh tons, making previously inaccessible locations reachable.",
+            "🚤🌊 Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water pump. Submerge the bag. Since the bag and its contents are nearly weightless, the system is incredibly buoyant. To function as a submarine, simply pump external water into the bag, increasing its total mass until its density becomes greater than the surrounding water, causing it to sink. To surface, pump the water back out. This allows for controlled vertical movement through a water column with minimal energy expenditure.",
+            "⚡🧶 Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff generator to build up an enormous static electric charge on the wool inside the bag. The perfect isolation of the extradimensional space prevents the charge from dissipating into the atmosphere. To deploy, open the bag and touch a grounded conductor to the wool. The entire stored charge of millions of volts will discharge at once, creating a powerful, man-made lightning bolt.",
+            "🌀🔋 Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to an extremely high RPM before sealing it inside. The gyroscope will now spin indefinitely in a frictionless vacuum, preserving its angular momentum perfectly. This momentum battery can be used as a powerful stabilization system for a vehicle or structure. Alternatively, the rotational energy can be mechanically tapped by a clutch mechanism to power machinery, releasing the stored kinetic energy on demand.",
+            "⏰💣 Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a specific thickness of sugar in water). Place this device inside the bag. The state preservation property halts all molecular processes, including the dissolution of the membrane. When you retrieve the device from the bag, the timer starts. This allows you to create a perfectly silent and reliable timer for initiating a chemical reaction (for demolitions, traps, or automated experiments) with a precise, pre-determined delay.",
+            "🔥🧱 Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it is white-hot. Carefully place this block inside the bag. The bag will preserve its immense thermal energy indefinitely, preventing it from cooling via radiation or convection. Later, you can retrieve the block and use it as a long-lasting, portable heat source for forging, generating steam to power a turbine, or as a devastating incendiary weapon. The weightlessness makes transporting the incredibly heavy and dangerous object trivial.",
+            "🧊💥 Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal it. Place the container inside the bag. In a sub-zero environment, retrieve the container and place it inside a crevice or piece of machinery. As the water inside begins to freeze, it expands by about 9%, exerting an immense and slow hydrostatic pressure—up to 30,000 psi—on the inner walls of the container. This force is sufficient to silently split solid rock or rupture metal casings without any explosive force.",
+            "⚡💧 Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that has a small turbine in the middle. Fill the top tank with water and retrieve the apparatus. The water will flow down, spinning the turbine and generating electricity. Once the top tank is empty, place the entire setup back in the bag. Because it's weightless, you can effortlessly flip it upside down. When retrieved again, the now-full tank is on top, ready to generate power once more, creating a closed-loop, rechargeable gravity battery.",
+            "⛵💨 Construct a sail of enormous surface area from an ultralight material and attach its rigging directly to the bag itself. Get inside. Normally, a boat's speed is limited by the drag of its hull pushing through water. Here, the wind acts upon a massive sail, but the mass it needs to accelerate is only that of the nearly weightless bag and its occupant. This creates a phenomenal thrust-to-mass ratio, allowing the craft to skim across the water surface at speeds impossible for a conventional vessel, pushed by even the slightest breeze.",
+            "💧💥 Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated brine solution. Seal it and place it in the Bag of Holding. To deploy, retrieve this inner pouch and throw it into a body of fresh water, such as a water tower or a small lake. Water from the outside will be driven by osmosis to rush into the pouch to equalize the solute concentration. This rapid influx creates immense internal pressure, causing the pouch to swell and rupture with explosive force, creating a powerful non-combustible shockwave.",
+            "🔥🖤 Construct a large, insulated box and paint its interior with a near-perfect black-body material like Vantablack. Place this box inside the bag. In a hot environment, you can aim the open box at a heat source (like a fire or an engine). The matte black surface will absorb nearly 100% of the incoming thermal radiation. Because the box is in the extradimensional space, its temperature doesn't rise conventionally, and it cannot radiate the heat back out. It functions as a perfect heat sink, passively drawing thermal energy out of an area to cause localized cooling without any exhaust.",
+            "🌊🔧 Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag's opening into a body of water. Because the long, heavy screw inside is rendered weightless, a single person can turn the crank with minimal effort. The rotating screw will function normally, lifting huge volumes of water up and out of the bag's opening. This allows one person to single-handedly perform large-scale irrigation or drainage tasks that would typically require a powerful, heavy mechanical pump.",
+            "🧭⭐ Construct a very large Foucault's pendulum with a long wire and a heavy bob, and place the entire apparatus inside the bag. Start the pendulum swinging along a known alignment (e.g., pointing at Polaris). Due to the conservation of momentum, the plane of the pendulum's swing will remain fixed relative to the distant stars. As you travel and the Earth rotates beneath you, the orientation of the swing plane will change relative to the bag. By measuring this change, you can precisely calculate your change in latitude and longitude, creating a self-contained, unjammable navigation system.",
+            "❄️💧 Take a volume of highly purified water in a perfectly smooth container and place it in the bag. The bag's state preservation keeps the water perfectly still and free from nucleation sites. Carefully cool the entire bag to a temperature below freezing. The water will become supercooled, remaining liquid. You can then retrieve this container and introduce a target to its surface. A single touch or impurity will trigger instantaneous crystallization, causing the entire volume to flash-freeze and encase the target in ice while releasing a burst of latent heat.",
+            "📮🔗 Acquire two bags of holding. Securely fasten one end of a long, flexible, and airtight tube inside the first bag and the other end inside the second bag. You have now created a conduit whose interior is an extradimensional space. Because the tube itself is weightless within the bags, this connection can be miles long. By using a simple bellows to create a pressure difference between the two bags' exterior openings, you can transport small objects through the tube at incredible speeds, creating a secret, long-distance pneumatic delivery system.",
+            "🧲🧗‍♂️ Place a powerful electromagnet connected to a battery pack inside the bag. To climb a ferrous metal wall, hold the bag's opening against the surface and activate the magnet. It will clamp the bag to the wall with immense force, generated silently within the extradimensional space. The magnetic field only exists at the point of contact. This provides a completely silent, movable, and incredibly strong anchor point. Deactivate the magnet to move, then reactivate it to secure your new position.",
+            "🔨⚙️ Place a large, rigid plate at the bottom of the bag. On top of it, place a small hydraulic piston connected via a sealed tube to a much larger piston that remains outside the bag. According to Pascal's principle, any force applied to the large external piston will be amplified enormously at the small internal piston. Because all the components inside the bag are weightless, you can generate colossal crushing forces on anything placed on the plate without needing a massive external frame to support the equipment.",
+            "🪂🔨 Pack a very large parachute into the bag, but attached to it is a separate, heavy anvil. To deploy, simply drop the bag from a great height. Just before you wish to open the parachute, reach in and retrieve only the anvil. The anvil, now subject to its full weight and gravity, will plummet downwards, violently yanking the entire parachute out of the bag and causing it to deploy fully and instantly. This allows for a successful parachute deployment at an altitude far too low for a traditional pilot chute to function.",
+            "🎵💥 Place a powerful acoustic generator inside the bag. By holding the bag against a structure like a wall or bridge, its vibrations will be transmitted directly into the material. Because the generator inside is weightless, it can be massive and powerful. Systematically sweep through frequencies while using a contact microphone to monitor the structure's feedback. When you identify the structure's natural resonant frequency (the point of maximum vibration), you can focus all of the generator's power onto that single frequency, causing the vibrations to amplify until they induce catastrophic structural failure.",
+            "🌡️💨 Fill a high-pressure, insulated gas cylinder and place it inside the bag. When you open the valve, the gas will undergo near-perfect adiabatic expansion as it fills the empty, zero-pressure volume of the bag's interior. This rapid expansion will cause the gas's temperature to plummet to cryogenic levels, flash-freezing anything at the bag's opening. Conversely, you can use a piston to rapidly compress the air inside the bag. With nowhere for the heat of compression to escape, you can generate temperatures hot enough to create a plasma torch effect at the aperture.",
+            "🏗️🪢 Run a rope through a pulley high on a structure. Attach one end to yourself and the other end to the bag of holding. Place a heavy object inside the bag. To ascend, simply reach into the bag and retrieve the heavy object. Your end of the rope is now heavier, and you will descend as the bag rises. To descend, put the object back into the bag. The bag becomes nearly weightless, and your body weight will pull you down, raising the bag. This creates a manually operated elevator system where you are always lifting a near-weightless object.",
+            "💧🏜️ During the day, fill the bag with hot, humid air from a jungle or marsh and seal it. Travel to a cold environment, such as a high-altitude mountain at night. Because the air's state is preserved, it remains hot and humid inside. When you open the bag, this hot, moist air hits the cold outside air, causing the water vapor to immediately and dramatically condense into liquid water or frost, which can be collected on a tarp. This allows you to transport atmospheric humidity from one location to another to create a water source.",
+        ];
+
+        // Pre-calculated expert similarity ratings for all possible pairs
+        const EXPERT_RATINGS = {};
+
+        // Current game state
+        let currentIdeas = [];
+        let currentPairIndex = 0;
+        let allPairs = [];
+        let startTime = null;
+        let currentSetIndex = 0;
+        let totalScore = 0;
+        let accuracy = 0;
+        let completedPairs = 0;
+        let isAnimating = false;
+
+        // Color gradients for cards
+        const CARD_COLORS = [
+            'linear-gradient(135deg, #74b9ff, #0984e3)', // Blue
+            'linear-gradient(135deg, #a29bfe, #6c5ce7)', // Purple  
+            'linear-gradient(135deg, #fd79a8, #e84393)', // Pink
+            'linear-gradient(135deg, #fdcb6e, #e17055)', // Orange
+            'linear-gradient(135deg, #6c5ce7, #a29bfe)', // Light Purple
+            'linear-gradient(135deg, #00b894, #00a085)', // Teal
+            'linear-gradient(135deg, #e17055, #d63031)', // Red
+            'linear-gradient(135deg, #00cec9, #00b894)', // Cyan
+            'linear-gradient(135deg, #f39c12, #e67e22)', // Bright Orange
+            'linear-gradient(135deg, #9b59b6, #8e44ad)', // Deep Purple
+            'linear-gradient(135deg, #3498db, #2980b9)', // Sky Blue
+            'linear-gradient(135deg, #1abc9c, #16a085)', // Turquoise
+        ];
+
+        let colorIndex = 0;
+
+        // Initialize expert ratings
+        function initializeExpertRatings() {
+            // This simulates expert ratings - in reality these would be crowd-sourced
+            const expertData = {
+                // Criminal/illegal activities cluster
+                "0,2": 9, "0,12": 8, "2,12": 9,
+                
+                // Storage/organization cluster  
+                "1,10": 8, "1,17": 7, "10,17": 8,
+                
+                // Emergency/disaster relief cluster
+                "5,13": 9, "5,25": 8, "13,25": 9,
+                
+                // Professional/business cluster
+                "9,14": 7, "9,24": 6, "14,24": 8,
+                
+                // Mixed examples with lower similarity
+                "0,1": 3, "0,5": 2, "1,2": 2, "3,15": 4, "7,18": 3,
+                "11,19": 6, "6,7": 4, "16,17": 2, "20,21": 7, "22,23": 3
+            };
+
+            // Generate ratings for all combinations with some variance
+            for (let i = 0; i < IDEAS_POOL.length; i++) {
+                for (let j = i + 1; j < IDEAS_POOL.length; j++) {
+                    const key = `${i},${j}`;
+                    if (expertData[key]) {
+                        EXPERT_RATINGS[key] = expertData[key];
+                    } else {
+                        // Generate plausible ratings based on content similarity
+                        EXPERT_RATINGS[key] = generateSimilarityRating(IDEAS_POOL[i], IDEAS_POOL[j]);
+                    }
+                }
+            }
+        }
+
+        function generateSimilarityRating(idea1, idea2) {
+            // Simple heuristic based on common keywords
+            const keywords1 = idea1.toLowerCase().split(' ');
+            const keywords2 = idea2.toLowerCase().split(' ');
+            const commonWords = keywords1.filter(word => keywords2.includes(word) && word.length > 3);
+            
+            let similarity = Math.min(commonWords.length * 2, 6);
+            
+            // Add some randomness but keep it realistic
+            similarity += Math.random() * 2 - 1;
+            return Math.max(1, Math.min(10, Math.round(similarity)));
+        }
+
+        function selectRandomIdeas() {
+            const shuffled = [...IDEAS_POOL].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, 12);
+        }
+
+        // Pre-computed similarity scores from embedding analysis (idea1_index -> idea2_index -> similarity)
+        const SIMILARITY_MATRIX = {};
+        
+        // Initialize similarity matrix from backend results
+        function initializeSimilarityMatrix() {
+            // Top similarity pairs from embedding analysis
+            const similarities = [
+                [12, 17, 0.7117], [4, 6, 0.6832], [3, 16, 0.6812], [3, 9, 0.6773],
+                [4, 12, 0.6590], [9, 16, 0.6587], [4, 9, 0.6406], [6, 16, 0.6293],
+                [0, 7, 0.6273], [0, 5, 0.6232], [1, 8, 0.6186], [10, 14, 0.6143],
+                [0, 10, 0.6098], [5, 10, 0.6076], [1, 5, 0.6046], [8, 9, 0.5972],
+                [2, 13, 0.5929], [11, 13, 0.5888], [0, 14, 0.5799], [6, 9, 0.5795],
+                [1, 10, 0.5748], [13, 17, 0.5731], [12, 16, 0.5727], [7, 14, 0.5682],
+                [2, 11, 0.5635], [13, 16, 0.5634], [11, 17, 0.5617], [0, 1, 0.5614],
+                [6, 13, 0.5579], [15, 16, 0.5575], [8, 14, 0.5502], [2, 12, 0.5498],
+                [1, 14, 0.5450], [9, 13, 0.5439], [7, 10, 0.5405], [0, 9, 0.5393],
+                [4, 17, 0.5384], [2, 17, 0.5379], [5, 14, 0.5374], [4, 13, 0.5360]
+            ];
+            
+            // Build bidirectional similarity matrix
+            for (const [i, j, score] of similarities) {
+                if (!SIMILARITY_MATRIX[i]) SIMILARITY_MATRIX[i] = {};
+                if (!SIMILARITY_MATRIX[j]) SIMILARITY_MATRIX[j] = {};
+                SIMILARITY_MATRIX[i][j] = score;
+                SIMILARITY_MATRIX[j][i] = score;
+            }
+        }
+
+        function findMostSimilarIdea(currentIdeaIndex, usedIdeas = new Set()) {
+            // Find the most similar unused idea to the current one
+            let bestMatch = null;
+            let bestScore = -1;
+            
+            if (SIMILARITY_MATRIX[currentIdeaIndex]) {
+                for (const [otherIndex, score] of Object.entries(SIMILARITY_MATRIX[currentIdeaIndex])) {
+                    const idx = parseInt(otherIndex);
+                    if (!usedIdeas.has(idx) && score > bestScore) {
+                        bestScore = score;
+                        bestMatch = idx;
+                    }
+                }
+            }
+            
+            return bestMatch;
+        }
+
+        function generateAllPairs(ideas) {
+            // Generate sliding sequence using embedding similarities
+            const pairs = [];
+            const usedIdeas = new Set();
+            
+            // Start with a random top card
+            let currentTopIdea = Math.floor(Math.random() * ideas.length);
+            
+            // Find the most similar idea to be the first bottom card
+            let currentBottomIdea = findMostSimilarIdea(currentTopIdea, usedIdeas);
+            if (currentBottomIdea === null) {
+                // If no similarity data, pick random
+                do {
+                    currentBottomIdea = Math.floor(Math.random() * ideas.length);
+                } while (currentBottomIdea === currentTopIdea);
+            }
+            
+            pairs.push([currentTopIdea, currentBottomIdea]);
+            usedIdeas.add(currentTopIdea);
+            usedIdeas.add(currentBottomIdea);
+            
+            // For each subsequent pair, keep the bottom idea and find its most similar unused idea
+            while (pairs.length < 20 && usedIdeas.size < ideas.length) {
+                const nextIdea = findMostSimilarIdea(currentBottomIdea, usedIdeas);
+                
+                if (nextIdea === null) {
+                    // No more similar ideas found, pick any unused idea
+                    for (let i = 0; i < ideas.length; i++) {
+                        if (!usedIdeas.has(i)) {
+                            pairs.push([currentBottomIdea, i]);
+                            usedIdeas.add(i);
+                            currentBottomIdea = i;
+                            break;
+                        }
+                    }
+                } else {
+                    pairs.push([currentBottomIdea, nextIdea]);
+                    usedIdeas.add(nextIdea);
+                    currentBottomIdea = nextIdea;
+                }
+            }
+            
+            return pairs;
+        }
+
+        function displayCurrentPair() {
+            if (currentPairIndex >= allPairs.length) {
+                endTest();
+                return;
+            }
+
+            const pair = allPairs[currentPairIndex];
+            const ideaTop = document.getElementById('idea-top');
+            const ideaBottom = document.getElementById('idea-bottom');
+            
+            // Split emoji and text for both cards with unique colors
+            setCardContent(ideaTop, currentIdeas[pair[0]], true);
+            setCardContent(ideaBottom, currentIdeas[pair[1]], true);
+            
+            // Reset rating buttons
+            document.querySelectorAll('.rating-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+        }
+
+        function setCardContent(cardElement, ideaText, assignNewColor = false) {
+            // Extract emojis (first part before first space after emojis)
+            const emojiMatch = ideaText.match(/^([\p{Emoji}\uFE0F\u200D\s]+)/u);
+            const emojis = emojiMatch ? emojiMatch[1].trim() : '';
+            const text = ideaText.replace(/^[\p{Emoji}\uFE0F\u200D\s]+/u, '').trim();
+            
+            // Calculate adaptive text size based on content length
+            let fontSize;
+            let cardHeight;
+            if (text.length < 80) {
+                fontSize = '1.4rem';
+                cardHeight = '200px';
+            } else if (text.length < 120) {
+                fontSize = '1.2rem';
+                cardHeight = '240px';
+            } else if (text.length < 160) {
+                fontSize = '1.1rem';
+                cardHeight = '260px';
+            } else {
+                fontSize = '0.95rem';
+                cardHeight = '280px';
+            }
+            
+            // Assign color and size if requested
+            if (assignNewColor) {
+                cardElement.style.background = CARD_COLORS[colorIndex % CARD_COLORS.length];
+                cardElement.style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+                cardElement.style.height = cardHeight;
+                colorIndex++;
+            }
+            
+            cardElement.innerHTML = `
+                <button class="downvote-btn" data-card="${cardElement.id}">Wouldn't work 😕</button>
+                <div class="card-emoji">${emojis}</div>
+                <div class="card-text" style="font-size: ${fontSize};">${text}</div>
+            `;
+        }
+
+        let currentUserRating = 3; // Default middle value
+
+        function calculatePairScore() {
+            const pair = allPairs[currentPairIndex];
+            const userRating = currentUserRating;
+            const expertRating = getExpertRating(pair[0], pair[1]);
+
+            // Calculate accuracy based on how close user rating is to expert rating
+            // Scale expert rating from 1-10 to 1-5 range
+            const scaledExpertRating = Math.round((expertRating - 1) * 4 / 9) + 1;
+            const difference = Math.abs(userRating - scaledExpertRating);
+            const maxPossibleDifference = 4; // max difference of 4 (5-1)
+            const accuracy = Math.max(0, (maxPossibleDifference - difference) / maxPossibleDifference);
+            
+            return accuracy;
+        }
+
+        function handleRatingClick(rating) {
+            if (isAnimating) return;
+            
+            currentUserRating = parseInt(rating);
+            
+            // Flash the selected button
+            const selectedBtn = document.querySelector(`[data-rating="${rating}"]`);
+            selectedBtn.classList.add('flash');
+            
+            // Remove flash class after animation
+            setTimeout(() => {
+                selectedBtn.classList.remove('flash');
+            }, 300);
+            
+            // Auto-advance to next pair after short delay
+            setTimeout(() => {
+                nextPair();
+            }, 200);
+        }
+
+        function handleDownvote() {
+            if (isAnimating) return;
+            
+            // Set a neutral rating for downvoted pairs
+            currentUserRating = 1; // Mark as very dissimilar since one idea is flawed
+            
+            // Auto-advance to next pair after short delay
+            setTimeout(() => {
+                nextPair();
+            }, 200);
+        }
+
+        function getExpertRating(ideaIndex1, ideaIndex2) {
+            const originalIndex1 = IDEAS_POOL.indexOf(currentIdeas[ideaIndex1]);
+            const originalIndex2 = IDEAS_POOL.indexOf(currentIdeas[ideaIndex2]);
+            const key = originalIndex1 < originalIndex2 ? 
+                `${originalIndex1},${originalIndex2}` : 
+                `${originalIndex2},${originalIndex1}`;
+            return EXPERT_RATINGS[key] || 5;
+        }
+
+        let previousAccuracy = 0;
+
+        function nextPair() {
+            if (isAnimating) return;
+            
+            const pairAccuracy = calculatePairScore();
+            totalScore += pairAccuracy * 100;
+            completedPairs++;
+            
+            // Update accuracy display with arrow animation
+            const newAccuracy = totalScore / completedPairs;
+            const accuracyInt = Math.round(newAccuracy);
+            document.getElementById('accuracy').textContent = accuracyInt;
+            document.getElementById('pairs-completed').textContent = completedPairs;
+            
+            // Show arrow animation for accuracy change
+            if (completedPairs > 1) {
+                const arrowElement = document.getElementById('accuracy-arrow');
+                arrowElement.classList.remove('up', 'down');
+                
+                if (accuracyInt > previousAccuracy) {
+                    arrowElement.textContent = '🎉';
+                    arrowElement.classList.add('up');
+                } else if (accuracyInt < previousAccuracy) {
+                    arrowElement.textContent = '🔻';
+                    arrowElement.classList.add('down');
+                }
+                
+                // Clear arrow after animation
+                setTimeout(() => {
+                    arrowElement.classList.remove('up', 'down');
+                    arrowElement.textContent = '';
+                }, 600);
+            }
+            
+            previousAccuracy = accuracyInt;
+            
+            currentPairIndex++;
+            
+            if (currentPairIndex >= allPairs.length) {
+                endTest();
+                return;
+            }
+            
+            // Animate the sliding
+            animateSlideUp();
+            updateScore();
+        }
+
+        function animateSlideUp() {
+            isAnimating = true;
+            const container = document.querySelector('.comparison-container');
+            const ideaTop = document.getElementById('idea-top');
+            const ideaBottom = document.getElementById('idea-bottom');
+            const newPair = allPairs[currentPairIndex];
+            
+            // Create new bottom card with new color and content
+            const newBottomCard = document.createElement('div');
+            newBottomCard.className = 'idea-card';
+            newBottomCard.style.position = 'absolute';
+            newBottomCard.style.bottom = '140px';
+            // Set initial position below screen
+            newBottomCard.style.transform = 'translateY(350px)';
+            setCardContent(newBottomCard, currentIdeas[newPair[1]], true);
+            
+            // Add new card to container
+            container.appendChild(newBottomCard);
+            
+            // Force reflow before animation
+            newBottomCard.offsetHeight;
+            
+            // Calculate dynamic slide distances
+            const topHeight = ideaTop.offsetHeight;
+            const bottomHeight = ideaBottom.offsetHeight;
+            const slideDistance = Math.max(topHeight, bottomHeight) + 40; // Account for padding
+            
+            // Animate all three cards - top card slides away faster
+            ideaTop.style.transition = 'transform 0.25s ease-out !important';
+            ideaBottom.style.transition = 'transform 0.4s ease-out !important';
+            newBottomCard.style.transition = 'transform 0.4s ease-out !important';
+            
+            // Top card slides up and gets clipped (continues sliding up)
+            ideaTop.style.transform = `translateY(-${slideDistance + 120}px)`;
+            // Bottom card slides up to top position  
+            ideaBottom.style.transform = `translateY(-${slideDistance}px)`;
+            // New card slides up to bottom position
+            newBottomCard.style.transform = 'translateY(0)';
+            
+            // After animation completes, clean up
+            setTimeout(() => {
+                // Remove old top card that slid up and out of view
+                container.removeChild(ideaTop);
+                
+                // Bottom card is now in top position - ONLY change the ID, no style changes
+                ideaBottom.id = 'idea-top';
+                // Don't change any positioning - it's already in the right place from the animation
+                
+                // New card becomes bottom card
+                newBottomCard.id = 'idea-bottom';
+                newBottomCard.style.transform = '';
+                newBottomCard.style.transition = '';
+                
+                // Update UI
+                    isAnimating = false;
+                
+            }, 400);
+        }
+
+        function updateScore() {
+            const elapsed = (Date.now() - startTime) / 1000;
+            const speedMultiplier = calculateSpeedMultiplier(elapsed, completedPairs);
+            const finalScore = Math.round(accuracy * speedMultiplier);
+            
+            document.getElementById('score').textContent = finalScore;
+            document.getElementById('speed-multiplier').textContent = `${speedMultiplier.toFixed(2)}x`;
+        }
+
+        function calculateSpeedMultiplier(elapsedSeconds, pairsCompleted) {
+            if (pairsCompleted === 0) return 1.0;
+            
+            const averageTimePerPair = elapsedSeconds / pairsCompleted;
+            const baselineTimePerPair = 600 / 66; // 10 minutes for 66 pairs (12 choose 2)
+            
+            if (averageTimePerPair <= baselineTimePerPair) {
+                // Faster than baseline - logarithmic bonus
+                const speedRatio = baselineTimePerPair / averageTimePerPair;
+                return 1.0 + 0.2 * Math.log(speedRatio);
+            } else {
+                // Slower than baseline - small penalty
+                const slowRatio = averageTimePerPair / baselineTimePerPair;
+                return Math.max(0.8, 1.0 - 0.1 * (slowRatio - 1));
+            }
+        }
+
+        function newIdeasSet() {
+            currentIdeas = IDEAS_POOL; // Use all 30 ideas, not random subset
+            allPairs = generateAllPairs(currentIdeas);
+            currentPairIndex = 0;
+            currentSetIndex++;
+            
+            displayCurrentPair();
+        }
+
+        function restartTest() {
+            startTime = Date.now();
+            currentSetIndex = 0;
+            totalScore = 0;
+            accuracy = 0;
+            completedPairs = 0;
+            isAnimating = false;
+            newIdeasSet();
+            updateScore();
+            
+            // Initialize timer display immediately
+            const timerElement = document.getElementById('timer-countdown');
+            if (timerElement) {
+                timerElement.textContent = '15:00';
+                // Trigger initial pulse animation
+                setTimeout(() => {
+                    timerElement.classList.add('pulse');
+                    setTimeout(() => {
+                        timerElement.classList.remove('pulse');
+                    }, 600);
+                }, 500);
+            }
+        }
+
+        function updateTimer() {
+            if (!startTime) {
+                // Set initial display
+                document.getElementById('timer-countdown').textContent = '15:00';
+                return;
+            }
+            
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const totalTime = 15 * 60; // 15 minutes in seconds
+            const remaining = Math.max(0, totalTime - elapsed);
+            
+            const minutes = Math.floor(remaining / 60);
+            const seconds = remaining % 60;
+            const timerDisplay = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const timerElement = document.getElementById('timer-countdown');
+            if (timerElement) {
+                timerElement.textContent = timerDisplay;
+                
+                // Pulse animation every minute mark
+                if (remaining > 0 && seconds === 0 && elapsed > 0 && elapsed % 60 === 0) {
+                    timerElement.classList.add('pulse');
+                    setTimeout(() => {
+                        timerElement.classList.remove('pulse');
+                    }, 600);
+                }
+            }
+            
+            // End test when time runs out
+            if (remaining === 0) {
+                endTest();
+            }
+        }
+
+        function endTest() {
+            setTimeout(() => {
+                alert(`🎉 Test completed! 🎉\n\nFinal Score: ${document.getElementById('score').textContent}\nAccuracy: ${document.getElementById('accuracy').textContent}\nSpeed Bonus: ${document.getElementById('speed-multiplier').textContent}\n\nGreat job rating ${completedPairs} idea pairs!`);
+            }, 500);
+        }
+
+        // Event listeners
+        document.getElementById('restart').addEventListener('click', restartTest);
+        
+        // Add click handlers for rating buttons and downvote buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('rating-btn')) {
+                const rating = e.target.getAttribute('data-rating');
+                handleRatingClick(rating);
+            } else if (e.target.classList.contains('downvote-btn')) {
+                handleDownvote();
+            }
+        });
+
+        // Allow keyboard shortcuts (1-5 keys)
+        document.addEventListener('keydown', (e) => {
+            if (['1', '2', '3', '4', '5'].includes(e.key) && !isAnimating) {
+                handleRatingClick(e.key);
+            }
+        });
+
+        // Initialize
+        initializeExpertRatings();
+        initializeSimilarityMatrix();
+        restartTest();
+        updateTimer(); // Call immediately to show initial time
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>

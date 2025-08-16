@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperCharge Admin - View Submissions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .nav-bar {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 184, 148, 0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .controls {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .controls-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .control-group input:focus,
+        .control-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 184, 148, 0.3);
+        }
+        
+        .btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+        
+        .btn.danger {
+            background: linear-gradient(135deg, #e17055, #d63031);
+        }
+        
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #dee2e6;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .submissions-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .submission-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .submission-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        
+        .submission-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .submission-date {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .superpower-title {
+            color: #6c757d;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .submission-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .idea-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .idea-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .idea-text {
+            color: #495057;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .idea-stats {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .loading::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+        
+        .no-results h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .page-btn {
+            background: white;
+            border: 2px solid #dee2e6;
+            color: #495057;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover {
+            background: #f8f9fa;
+            border-color: #667eea;
+        }
+        
+        .page-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Submissions Viewer</h1>
+            <p>View and search submitted ideas</p>
+        </div>
+        
+        <div class="nav-bar">
+            <a href="admin.html" class="nav-btn">🏠 Admin Home</a>
+            <a href="admin-submissions.html" class="nav-btn active">📝 View Submissions</a>
+            <a href="cloth.html" class="nav-btn">🚀 User App</a>
+        </div>
+        
+        <div class="controls">
+            <div class="controls-row">
+                <div class="control-group">
+                    <label for="searchInput">🔍 Search Ideas</label>
+                    <input type="text" id="searchInput" placeholder="Search by keywords, username, or idea content...">
+                </div>
+                
+                <div class="control-group">
+                    <label for="dateFilter">📅 Filter by Date</label>
+                    <select id="dateFilter">
+                        <option value="">All dates</option>
+                        <option value="today">Today</option>
+                        <option value="yesterday">Yesterday</option>
+                        <option value="week">This week</option>
+                        <option value="month">This month</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="typeFilter">🤖 Submission Type</label>
+                    <select id="typeFilter">
+                        <option value="">All types</option>
+                        <option value="human">👤 Human only</option>
+                        <option value="ai">🤖 AI only</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="sortOrder">📊 Sort Order</label>
+                    <select id="sortOrder">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                        <option value="username">By username</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="loadSubmissions()">🔄 Refresh</button>
+                <button class="btn secondary" onclick="exportSubmissions()">📥 Export CSV</button>
+            </div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-number" id="totalSubmissions">-</div>
+                <div class="stat-label">Total Submissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalUsers">-</div>
+                <div class="stat-label">Unique Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalIdeas">-</div>
+                <div class="stat-label">Total Ideas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="avgWordCount">-</div>
+                <div class="stat-label">Avg Words/Idea</div>
+            </div>
+        </div>
+        
+        <div id="submissionsList" class="submissions-grid">
+            <div class="loading">Loading submissions...</div>
+        </div>
+        
+        <div id="pagination" class="pagination" style="display: none;">
+            <button class="page-btn" id="prevBtn" onclick="changePage(-1)">← Previous</button>
+            <span id="pageInfo">Page 1 of 1</span>
+            <button class="page-btn" id="nextBtn" onclick="changePage(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://gsx73a1w3d.execute-api.us-east-1.amazonaws.com/prod';
+        let allSubmissions = [];
+        let filteredSubmissions = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        
+        // Load submissions from real API
+        async function loadSubmissions() {
+            const listEl = document.getElementById('submissionsList');
+            listEl.innerHTML = '<div class="loading">Loading submissions...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/submissions`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    allSubmissions = result.submissions;
+                    updateStats();
+                    applyFilters();
+                } else {
+                    listEl.innerHTML = `
+                        <div class="no-results">
+                            <h3>Error Loading Submissions</h3>
+                            <p>${result.error}</p>
+                            <button class="btn" onclick="loadSubmissions()" style="margin-top: 15px;">Retry</button>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                listEl.innerHTML = `
+                    <div class="no-results">
+                        <h3>Network Error</h3>
+                        <p>Could not connect to the API: ${error.message}</p>
+                        <button class="btn" onclick="loadSubmissions()" style="margin-top: 15px;">Retry</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const humanSubmissions = allSubmissions.filter(s => !s.isAI);
+            const aiSubmissions = allSubmissions.filter(s => s.isAI);
+            const totalSubmissions = allSubmissions.length;
+            const uniqueUsers = new Set(allSubmissions.map(s => s.userId)).size;
+            const totalIdeas = allSubmissions.reduce((sum, s) => sum + s.ideas.length, 0);
+            const avgWordCount = Math.round(
+                allSubmissions.reduce((sum, s) => 
+                    sum + s.ideas.reduce((ideaSum, idea) => 
+                        ideaSum + idea.split(/\s+/).filter(w => w.length > 0).length, 0), 0
+                ) / totalIdeas
+            );
+            
+            document.getElementById('totalSubmissions').textContent = `${totalSubmissions} (${humanSubmissions.length}👤 + ${aiSubmissions.length}🤖)`;
+            document.getElementById('totalUsers').textContent = uniqueUsers;
+            document.getElementById('totalIdeas').textContent = totalIdeas;
+            document.getElementById('avgWordCount').textContent = avgWordCount;
+        }
+        
+        // Apply filters and search
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sortOrder = document.getElementById('sortOrder').value;
+            
+            let filtered = [...allSubmissions];
+            
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(submission => {
+                    const searchableText = `
+                        ${submission.userId} 
+                        ${submission.superpowerTitle} 
+                        ${submission.ideas.join(' ')}
+                    `.toLowerCase();
+                    return searchableText.includes(searchTerm);
+                });
+            }
+            
+            // Apply date filter
+            if (dateFilter) {
+                const now = new Date();
+                const today = now.toISOString().split('T')[0];
+                const yesterday = new Date(now - 86400000).toISOString().split('T')[0];
+                const weekAgo = new Date(now - 7 * 86400000).toISOString().split('T')[0];
+                const monthAgo = new Date(now - 30 * 86400000).toISOString().split('T')[0];
+                
+                filtered = filtered.filter(submission => {
+                    switch (dateFilter) {
+                        case 'today': return submission.date === today;
+                        case 'yesterday': return submission.date === yesterday;
+                        case 'week': return submission.date >= weekAgo;
+                        case 'month': return submission.date >= monthAgo;
+                        default: return true;
+                    }
+                });
+            }
+            
+            // Apply type filter
+            if (typeFilter) {
+                filtered = filtered.filter(submission => {
+                    switch (typeFilter) {
+                        case 'human': return !submission.isAI;
+                        case 'ai': return submission.isAI;
+                        default: return true;
+                    }
+                });
+            }
+            
+            // Apply sorting
+            filtered.sort((a, b) => {
+                switch (sortOrder) {
+                    case 'newest': return b.timestamp - a.timestamp;
+                    case 'oldest': return a.timestamp - b.timestamp;
+                    case 'username': return a.userId.localeCompare(b.userId);
+                    default: return b.timestamp - a.timestamp;
+                }
+            });
+            
+            filteredSubmissions = filtered;
+            currentPage = 1;
+            displaySubmissions();
+        }
+        
+        // Display submissions for current page
+        function displaySubmissions() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageSubmissions = filteredSubmissions.slice(startIndex, endIndex);
+            
+            const listEl = document.getElementById('submissionsList');
+            
+            if (pageSubmissions.length === 0) {
+                listEl.innerHTML = `
+                    <div class="no-results">
+                        <h3>No submissions found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                document.getElementById('pagination').style.display = 'none';
+                return;
+            }
+            
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            listEl.innerHTML = pageSubmissions.map(submission => `
+                <div class="submission-card">
+                    <div class="submission-header">
+                        <div class="submission-meta">
+                            <div class="user-name">
+                                ${submission.isAI ? '🤖 ' : '👤 '}${highlightText(submission.userId, searchTerm)}
+                                ${submission.isAI ? '<span style="background: #ffeaa7; color: #d63031; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 8px;">AI-GENERATED</span>' : ''}
+                            </div>
+                            <div class="submission-date">${formatDate(submission.submittedAt)}</div>
+                            <div class="superpower-title">${highlightText(submission.superpowerTitle, searchTerm)}</div>
+                            ${submission.isAI ? `<div style="color: #6c757d; font-size: 0.8rem; margin-top: 4px;">Model: ${submission.aiModel || 'Unknown'}</div>` : ''}
+                        </div>
+                        <div class="submission-actions">
+                            <button class="btn danger" onclick="deleteSubmission('${submission.submissionId}')">🗑️ Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ideas-grid">
+                        ${submission.ideas.map((idea, index) => `
+                            <div class="idea-card">
+                                <div class="idea-number">💡 Idea #${index + 1}</div>
+                                <div class="idea-text">${highlightText(idea, searchTerm)}</div>
+                                <div class="idea-stats">
+                                    <span>${idea.split(/\s+/).filter(w => w.length > 0).length} words</span>
+                                    <span>${idea.length} characters</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            updatePagination();
+        }
+        
+        // Highlight search terms in text
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+        
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // Update pagination controls
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredSubmissions.length / itemsPerPage);
+            const paginationEl = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
+                return;
+            }
+            
+            paginationEl.style.display = 'flex';
+            document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+        }
+        
+        // Change page
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredSubmissions.length / itemsPerPage);
+            const newPage = currentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                displaySubmissions();
+            }
+        }
+        
+        // Delete submission (mock implementation)
+        function deleteSubmission(submissionId) {
+            if (confirm('Are you sure you want to delete this submission?')) {
+                allSubmissions = allSubmissions.filter(s => s.submissionId !== submissionId);
+                updateStats();
+                applyFilters();
+                alert('Submission deleted successfully!');
+            }
+        }
+        
+        // Export submissions to CSV
+        function exportSubmissions() {
+            const csvContent = [
+                ['Username', 'Date', 'Superpower', 'Idea 1', 'Idea 2', 'Idea 3', 'Idea 4'],
+                ...filteredSubmissions.map(sub => [
+                    sub.userId,
+                    sub.date,
+                    sub.superpowerTitle,
+                    sub.ideas[0] || '',
+                    sub.ideas[1] || '',
+                    sub.ideas[2] || '',
+                    sub.ideas[3] || ''
+                ])
+            ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `supercharge-submissions-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // Set up event listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('dateFilter').addEventListener('change', applyFilters);
+        document.getElementById('typeFilter').addEventListener('change', applyFilters);
+        document.getElementById('sortOrder').addEventListener('change', applyFilters);
+        
+        // Load submissions on page load
+        loadSubmissions();
+    </script>
+</body>
+</html>

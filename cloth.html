@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperCharge - Daily Creativity Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .phase {
+            display: none;
+        }
+        
+        .phase.active {
+            display: block;
+        }
+        
+        .superpower-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(238, 90, 36, 0.3);
+        }
+        
+        .superpower-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .superpower-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .instructions h3 {
+            color: #495057;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ul {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .deadline-timer {
+            background: linear-gradient(135deg, #e17055, #d63031);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .idea-form {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .idea-input {
+            position: relative;
+        }
+        
+        .idea-input label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .idea-input textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .idea-input textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .word-count {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+        
+        .word-count.warning {
+            color: #e17055;
+        }
+        
+        .word-count.error {
+            color: #d63031;
+            font-weight: bold;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 184, 148, 0.3);
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 184, 148, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn.danger {
+            background: linear-gradient(135deg, #e17055, #d63031);
+            box-shadow: 0 8px 16px rgba(225, 112, 85, 0.3);
+        }
+        
+        .btn.danger:hover {
+            box-shadow: 0 12px 24px rgba(225, 112, 85, 0.4);
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .status-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d1edff;
+            color: #0c63e4;
+            border: 1px solid #b3d7ff;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .rating-timer {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .rating-instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .leaderboard-preview {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .leaderboard-preview h3 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        
+        .leaderboard-preview p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .user-id-input {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .user-id-input label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        
+        .user-id-input input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 SuperCharge</h1>
+            <p id="headerSubtitle">Daily Creativity Challenge</p>
+        </div>
+        
+        <!-- Phase 1: Get User ID -->
+        <div id="userIdPhase" class="phase active">
+            <div class="user-id-input">
+                <label for="userId">Enter your username to continue:</label>
+                <input type="text" id="userId" placeholder="Choose a unique username" required>
+                <br><br>
+                <button class="btn" onclick="setUserId()">Continue</button>
+            </div>
+        </div>
+        
+        <!-- Phase 2: Daily Superpower & Submission -->
+        <div id="submissionPhase" class="phase">
+            <div id="superpowerCard" class="superpower-card">
+                <div class="superpower-title" id="superpowerTitle">Loading today's challenge...</div>
+                <div class="superpower-description" id="superpowerDescription"></div>
+            </div>
+            
+            <div class="instructions">
+                <h3>🎯 How to Play SuperCharge</h3>
+                <ul>
+                    <li><strong>Be Creative & Practical:</strong> Come up with unusual ideas that actually work in the real world</li>
+                    <li><strong>Think Outside the Box:</strong> The best ideas are both innovative and implementable</li>
+                    <li><strong>Four Ideas Required:</strong> Submit exactly 4 of your best ideas</li>
+                    <li><strong>Word Limit:</strong> Each idea must be 100 words or less</li>
+                    <li><strong>Daily Deadline:</strong> Submit before 11:59 PM today</li>
+                </ul>
+            </div>
+            
+            <div class="deadline-timer" id="deadlineTimer">
+                ⏰ Time remaining: <span id="timeRemaining">Loading...</span>
+            </div>
+            
+            <div id="statusMessage" class="hidden"></div>
+            
+            <form id="ideaForm" class="idea-form">
+                <div class="idea-input">
+                    <label for="idea1">💡 Idea #1</label>
+                    <textarea id="idea1" name="idea1" placeholder="Describe your first creative application..." required></textarea>
+                    <div class="word-count" id="count1">0/100 words</div>
+                </div>
+                
+                <div class="idea-input">
+                    <label for="idea2">💡 Idea #2</label>
+                    <textarea id="idea2" name="idea2" placeholder="Describe your second creative application..." required></textarea>
+                    <div class="word-count" id="count2">0/100 words</div>
+                </div>
+                
+                <div class="idea-input">
+                    <label for="idea3">💡 Idea #3</label>
+                    <textarea id="idea3" name="idea3" placeholder="Describe your third creative application..." required></textarea>
+                    <div class="word-count" id="count3">0/100 words</div>
+                </div>
+                
+                <div class="idea-input">
+                    <label for="idea4">💡 Idea #4</label>
+                    <textarea id="idea4" name="idea4" placeholder="Describe your fourth creative application..." required></textarea>
+                    <div class="word-count" id="count4">0/100 words</div>
+                </div>
+                
+                <button type="submit" class="btn" id="submitIdeasBtn">
+                    <span id="submitText">Submit My 4 Ideas</span>
+                    <span id="submitLoader" class="loading hidden"></span>
+                </button>
+            </form>
+        </div>
+        
+        <!-- Phase 3: Rating Period -->
+        <div id="ratingPhase" class="phase">
+            <div class="rating-timer" id="ratingTimer">
+                ⏱️ Rating Time: <span id="ratingTimeRemaining">15:00</span>
+            </div>
+            
+            <div class="rating-instructions">
+                <h3>🎯 Rate Other People's Ideas</h3>
+                <p><strong>Your score depends on both your idea quality AND rating accuracy!</strong></p>
+                <p>Rate how similar these ideas are to each other on a scale of 1-5. Your ratings will be compared to other participants' ratings.</p>
+            </div>
+            
+            <div id="ratingContent">
+                <p>Loading rating pairs...</p>
+            </div>
+        </div>
+        
+        <!-- Phase 4: Results -->
+        <div id="resultsPhase" class="phase">
+            <div class="leaderboard-preview">
+                <h3>🎉 Great Job!</h3>
+                <p id="resultsMessage">You scored in the top 20%!</p>
+                <p style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Check back tomorrow at 12 AM for full results and leaderboard!</p>
+                
+                <button class="btn" onclick="location.reload()" style="margin-top: 20px; width: auto; padding: 15px 30px;">
+                    🔄 Try Tomorrow's Challenge
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://gsx73a1w3d.execute-api.us-east-1.amazonaws.com/prod';
+        let currentUser = '';
+        let currentSuperpower = null;
+        let ratingTimer = null;
+        let deadlineTimer = null;
+        
+        // Initialize the application
+        async function init() {
+            // Set up word counters
+            setupWordCounters();
+            
+            // Set up deadline timer
+            setupDeadlineTimer();
+        }
+        
+        // Set user ID and move to submission phase
+        function setUserId() {
+            const userIdInput = document.getElementById('userId');
+            const userId = userIdInput.value.trim();
+            
+            if (!userId) {
+                alert('Please enter a username');
+                return;
+            }
+            
+            currentUser = userId;
+            document.getElementById('userIdPhase').classList.remove('active');
+            document.getElementById('submissionPhase').classList.add('active');
+            
+            // Load today's superpower
+            loadDailySuperpower();
+        }
+        
+        // Load today's superpower challenge
+        async function loadDailySuperpower() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/superpower`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    currentSuperpower = result.superpower;
+                    document.getElementById('superpowerTitle').textContent = result.superpower.title;
+                    document.getElementById('superpowerDescription').textContent = result.superpower.description;
+                } else {
+                    // Fallback superpower for demo
+                    currentSuperpower = {
+                        id: 'demo-1',
+                        title: 'Perfect Memory',
+                        description: 'You have the ability to remember everything with perfect clarity and recall any information instantly. How would you use this power to solve everyday problems and create value in creative ways?'
+                    };
+                    document.getElementById('superpowerTitle').textContent = currentSuperpower.title;
+                    document.getElementById('superpowerDescription').textContent = currentSuperpower.description;
+                }
+            } catch (error) {
+                console.error('Error loading superpower:', error);
+                // Use fallback
+                currentSuperpower = {
+                    id: 'demo-1',
+                    title: 'Perfect Memory',
+                    description: 'You have the ability to remember everything with perfect clarity and recall any information instantly. How would you use this power to solve everyday problems and create value in creative ways?'
+                };
+                document.getElementById('superpowerTitle').textContent = currentSuperpower.title;
+                document.getElementById('superpowerDescription').textContent = currentSuperpower.description;
+            }
+        }
+        
+        // Setup word counters for idea inputs
+        function setupWordCounters() {
+            for (let i = 1; i <= 4; i++) {
+                const textarea = document.getElementById(`idea${i}`);
+                const counter = document.getElementById(`count${i}`);
+                
+                textarea.addEventListener('input', () => {
+                    const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+                    const wordCount = words.length;
+                    
+                    counter.textContent = `${wordCount}/100 words`;
+                    
+                    if (wordCount > 100) {
+                        counter.classList.add('error');
+                        counter.classList.remove('warning');
+                    } else if (wordCount > 80) {
+                        counter.classList.add('warning');
+                        counter.classList.remove('error');
+                    } else {
+                        counter.classList.remove('warning', 'error');
+                    }
+                });
+            }
+        }
+        
+        // Setup deadline timer
+        function setupDeadlineTimer() {
+            function updateDeadline() {
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0); // Midnight tomorrow
+                
+                const timeLeft = tomorrow - now;
+                
+                if (timeLeft <= 0) {
+                    document.getElementById('timeRemaining').textContent = 'Deadline passed';
+                    return;
+                }
+                
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('timeRemaining').textContent = 
+                    `${hours}h ${minutes}m ${seconds}s`;
+            }
+            
+            updateDeadline();
+            deadlineTimer = setInterval(updateDeadline, 1000);
+        }
+        
+        // Show status message
+        function showStatus(message, isError = false) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = isError ? 'status-message status-error' : 'status-message status-success';
+            statusEl.classList.remove('hidden');
+            
+            setTimeout(() => {
+                statusEl.classList.add('hidden');
+            }, 5000);
+        }
+        
+        // Submit ideas
+        document.getElementById('ideaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const ideas = [];
+            let hasErrors = false;
+            
+            // Validate all ideas
+            for (let i = 1; i <= 4; i++) {
+                const textarea = document.getElementById(`idea${i}`);
+                const text = textarea.value.trim();
+                
+                if (!text) {
+                    showStatus(`Please fill in Idea #${i}`, true);
+                    return;
+                }
+                
+                const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+                if (wordCount > 100) {
+                    showStatus(`Idea #${i} exceeds 100 words (${wordCount} words)`, true);
+                    return;
+                }
+                
+                ideas.push(text);
+            }
+            
+            // Set loading state
+            const submitBtn = document.getElementById('submitIdeasBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+            
+            submitBtn.disabled = true;
+            submitText.classList.add('hidden');
+            submitLoader.classList.remove('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: currentUser,
+                        superpowerId: currentSuperpower.id,
+                        ideas: ideas
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus('Ideas submitted successfully!');
+                    
+                    // Move to rating phase after 2 seconds
+                    setTimeout(() => {
+                        document.getElementById('submissionPhase').classList.remove('active');
+                        document.getElementById('ratingPhase').classList.add('active');
+                        startRatingPhase();
+                    }, 2000);
+                } else {
+                    showStatus(`Error: ${result.error}`, true);
+                }
+            } catch (error) {
+                showStatus(`Network error: ${error.message}`, true);
+            } finally {
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+            }
+        });
+        
+        // Start rating phase
+        function startRatingPhase() {
+            let timeLeft = 15 * 60; // 15 minutes
+            
+            function updateRatingTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('ratingTimeRemaining').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(ratingTimer);
+                    finishRating();
+                    return;
+                }
+                
+                timeLeft--;
+            }
+            
+            updateRatingTimer();
+            ratingTimer = setInterval(updateRatingTimer, 1000);
+            
+            // Mock rating content for now
+            document.getElementById('ratingContent').innerHTML = `
+                <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; text-align: center;">
+                    <h3>Rating functionality coming soon!</h3>
+                    <p>You would rate pairs of submitted ideas here.</p>
+                    <button class="btn" onclick="finishRating()" style="margin-top: 15px; width: auto; padding: 15px 30px;">
+                        Skip to Results (Demo)
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Finish rating and show results
+        function finishRating() {
+            if (ratingTimer) {
+                clearInterval(ratingTimer);
+            }
+            
+            document.getElementById('ratingPhase').classList.remove('active');
+            document.getElementById('resultsPhase').classList.add('active');
+            
+            // Mock results
+            const percentiles = [20, 35, 50, 65, 80];
+            const randomPercentile = percentiles[Math.floor(Math.random() * percentiles.length)];
+            document.getElementById('resultsMessage').textContent = 
+                `Great job! You scored in the top ${randomPercentile}% of participants!`;
+        }
+        
+        // Initialize on page load
+        init();
+    </script>
+</body>
+</html>

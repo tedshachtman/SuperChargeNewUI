@@ -1,0 +1,1370 @@
+[
+  {
+    "idea1_index": 12,
+    "idea2_index": 17,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.7117458365999982,
+    "cosine_distance": 0.28825416340000176
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 6,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.6831656011354649,
+    "cosine_distance": 0.3168343988645351
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 16,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.6811936793891212,
+    "cosine_distance": 0.31880632061087877
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 9,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.6772779628726638,
+    "cosine_distance": 0.32272203712733616
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 12,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.6589559385092976,
+    "cosine_distance": 0.34104406149070243
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 16,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.6586713156412222,
+    "cosine_distance": 0.34132868435877783
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 9,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.6405978861978822,
+    "cosine_distance": 0.35940211380211784
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 16,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.629286060796629,
+    "cosine_distance": 0.37071393920337103
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 7,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.6272712152327451,
+    "cosine_distance": 0.3727287847672549
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 5,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "similarity_score": 0.6232318897858639,
+    "cosine_distance": 0.37676811021413614
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 13,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.6209603629083777,
+    "cosine_distance": 0.37903963709162225
+  },
+  {
+    "idea1_index": 14,
+    "idea2_index": 18,
+    "idea1_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.6204679706135652,
+    "cosine_distance": 0.3795320293864348
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 17,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.6152866499203125,
+    "cosine_distance": 0.38471335007968754
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 10,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.6136337611641466,
+    "cosine_distance": 0.3863662388358534
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 14,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.6118963964216344,
+    "cosine_distance": 0.3881036035783656
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 14,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.6084562766413898,
+    "cosine_distance": 0.3915437233586102
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 5,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "similarity_score": 0.6067930786092633,
+    "cosine_distance": 0.39320692139073665
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 12,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.6025700633758276,
+    "cosine_distance": 0.39742993662417236
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 18,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.6014301489713764,
+    "cosine_distance": 0.39856985102862363
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 15,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.5949958491393161,
+    "cosine_distance": 0.40500415086068386
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 4,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "similarity_score": 0.5929743661361557,
+    "cosine_distance": 0.40702563386384427
+  },
+  {
+    "idea1_index": 13,
+    "idea2_index": 16,
+    "idea1_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5927522347721016,
+    "cosine_distance": 0.4072477652278984
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 18,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.5842327010828345,
+    "cosine_distance": 0.41576729891716546
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 6,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.5827732946973705,
+    "cosine_distance": 0.4172267053026295
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 12,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.582752400901343,
+    "cosine_distance": 0.41724759909865705
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 4,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "similarity_score": 0.5723156819254397,
+    "cosine_distance": 0.4276843180745603
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 12,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.5705937978643218,
+    "cosine_distance": 0.42940620213567815
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 9,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.5705680887454663,
+    "cosine_distance": 0.4294319112545337
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 5,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "similarity_score": 0.5669004883479535,
+    "cosine_distance": 0.4330995116520465
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 3,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "similarity_score": 0.5648233296976951,
+    "cosine_distance": 0.4351766703023049
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 16,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5599203525590971,
+    "cosine_distance": 0.4400796474409029
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 14,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.5596963289215524,
+    "cosine_distance": 0.4403036710784476
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 16,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5548669773583571,
+    "cosine_distance": 0.4451330226416429
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 8,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.5541920887774907,
+    "cosine_distance": 0.4458079112225093
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 17,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.5501623229236116,
+    "cosine_distance": 0.44983767707638844
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 12,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.5500390381690294,
+    "cosine_distance": 0.44996096183097056
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 14,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.5492589015730791,
+    "cosine_distance": 0.4507410984269209
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 9,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.544823075978338,
+    "cosine_distance": 0.455176924021662
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 15,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.5417937392555284,
+    "cosine_distance": 0.45820626074447157
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 7,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.5413782419150622,
+    "cosine_distance": 0.45862175808493777
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 17,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.5391981640831864,
+    "cosine_distance": 0.46080183591681356
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 12,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.5358536669184113,
+    "cosine_distance": 0.4641463330815887
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 9,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.53344674452892,
+    "cosine_distance": 0.46655325547107995
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 5,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "similarity_score": 0.5324888947835223,
+    "cosine_distance": 0.46751110521647765
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 10,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.5291382590080351,
+    "cosine_distance": 0.47086174099196487
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 18,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.5231446767434526,
+    "cosine_distance": 0.47685532325654745
+  },
+  {
+    "idea1_index": 14,
+    "idea2_index": 16,
+    "idea1_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5221457685821952,
+    "cosine_distance": 0.4778542314178048
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 12,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.5216100685319893,
+    "cosine_distance": 0.4783899314680107
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 8,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.5204072745683688,
+    "cosine_distance": 0.47959272543163123
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 2,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "similarity_score": 0.5195954516010357,
+    "cosine_distance": 0.4804045483989643
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 14,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.5180708022984797,
+    "cosine_distance": 0.4819291977015203
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 15,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.5178996979226396,
+    "cosine_distance": 0.48210030207736043
+  },
+  {
+    "idea1_index": 16,
+    "idea2_index": 18,
+    "idea1_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.5173559257336868,
+    "cosine_distance": 0.48264407426631317
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 16,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.515778685443625,
+    "cosine_distance": 0.48422131455637496
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 18,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.5142622548057973,
+    "cosine_distance": 0.48573774519420265
+  },
+  {
+    "idea1_index": 12,
+    "idea2_index": 14,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.5127286512542979,
+    "cosine_distance": 0.4872713487457021
+  },
+  {
+    "idea1_index": 12,
+    "idea2_index": 13,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.5125675866966389,
+    "cosine_distance": 0.48743241330336107
+  },
+  {
+    "idea1_index": 12,
+    "idea2_index": 16,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5123178349351084,
+    "cosine_distance": 0.4876821650648916
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 6,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.508973297666859,
+    "cosine_distance": 0.49102670233314105
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 13,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.5059287218794409,
+    "cosine_distance": 0.49407127812055907
+  },
+  {
+    "idea1_index": 15,
+    "idea2_index": 18,
+    "idea1_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.5046709963131223,
+    "cosine_distance": 0.4953290036868777
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 11,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.504668184785394,
+    "cosine_distance": 0.495331815214606
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 10,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.5034456494599939,
+    "cosine_distance": 0.4965543505400061
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 8,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.5028762737668215,
+    "cosine_distance": 0.49712372623317846
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 16,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.5025164842310449,
+    "cosine_distance": 0.4974835157689551
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 13,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.5003026963982459,
+    "cosine_distance": 0.49969730360175413
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 13,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.49980957748918625,
+    "cosine_distance": 0.5001904225108138
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 4,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "similarity_score": 0.49924404609834155,
+    "cosine_distance": 0.5007559539016584
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 8,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.49834398418190134,
+    "cosine_distance": 0.5016560158180987
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 10,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.4976747064845937,
+    "cosine_distance": 0.5023252935154063
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 16,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.4971669959848062,
+    "cosine_distance": 0.5028330040151938
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 12,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.49283305544763345,
+    "cosine_distance": 0.5071669445523665
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 8,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.4916195445643479,
+    "cosine_distance": 0.5083804554356521
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 9,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.4914306644615427,
+    "cosine_distance": 0.5085693355384573
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 6,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.49143050814400596,
+    "cosine_distance": 0.508569491855994
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 13,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.4864493582333502,
+    "cosine_distance": 0.5135506417666498
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 13,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.4845146327275921,
+    "cosine_distance": 0.5154853672724079
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 15,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.48381155278871363,
+    "cosine_distance": 0.5161884472112863
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 17,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.48300346753621337,
+    "cosine_distance": 0.5169965324637866
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 10,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.48053101942693055,
+    "cosine_distance": 0.5194689805730694
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 15,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.47865699565828096,
+    "cosine_distance": 0.5213430043417191
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 15,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.47829654528375837,
+    "cosine_distance": 0.5217034547162416
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 16,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.4750542204280731,
+    "cosine_distance": 0.5249457795719269
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 11,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.474337343444994,
+    "cosine_distance": 0.525662656555006
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 10,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.4703953269325059,
+    "cosine_distance": 0.5296046730674941
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 16,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.46884529101076855,
+    "cosine_distance": 0.5311547089892314
+  },
+  {
+    "idea1_index": 15,
+    "idea2_index": 16,
+    "idea1_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.467940181015192,
+    "cosine_distance": 0.532059818984808
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 10,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.4679221767159623,
+    "cosine_distance": 0.5320778232840377
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 9,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.4678026106278596,
+    "cosine_distance": 0.5321973893721403
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 18,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.46762377826152723,
+    "cosine_distance": 0.5323762217384728
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 5,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "similarity_score": 0.46732717385028477,
+    "cosine_distance": 0.5326728261497152
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 17,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.46676375444945994,
+    "cosine_distance": 0.5332362455505401
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 17,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.4657287298325588,
+    "cosine_distance": 0.5342712701674412
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 7,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.46441838671769,
+    "cosine_distance": 0.53558161328231
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 15,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.4609895514215063,
+    "cosine_distance": 0.5390104485784937
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 1,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "similarity_score": 0.4609560916769744,
+    "cosine_distance": 0.5390439083230256
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 13,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.4602993266338355,
+    "cosine_distance": 0.5397006733661645
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 8,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.45988363174095986,
+    "cosine_distance": 0.5401163682590402
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 14,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.4591174869624486,
+    "cosine_distance": 0.5408825130375514
+  },
+  {
+    "idea1_index": 13,
+    "idea2_index": 18,
+    "idea1_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.4584689353847255,
+    "cosine_distance": 0.5415310646152744
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 9,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.4564070723508806,
+    "cosine_distance": 0.5435929276491194
+  },
+  {
+    "idea1_index": 12,
+    "idea2_index": 15,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.4560293581720624,
+    "cosine_distance": 0.5439706418279375
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 16,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.45602766970736147,
+    "cosine_distance": 0.5439723302926385
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 12,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.45563679855218886,
+    "cosine_distance": 0.5443632014478111
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 9,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "similarity_score": 0.4523106813837426,
+    "cosine_distance": 0.5476893186162575
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 18,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.4502386547995338,
+    "cosine_distance": 0.5497613452004662
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 17,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.44958053225883726,
+    "cosine_distance": 0.5504194677411627
+  },
+  {
+    "idea1_index": 13,
+    "idea2_index": 14,
+    "idea1_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.44886344417454005,
+    "cosine_distance": 0.55113655582546
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 14,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.4480777375465007,
+    "cosine_distance": 0.5519222624534993
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 12,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.44755247412844346,
+    "cosine_distance": 0.5524475258715565
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 13,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.4471152563962761,
+    "cosine_distance": 0.5528847436037239
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 14,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.4460734333771744,
+    "cosine_distance": 0.5539265666228256
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 11,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.44534211380460004,
+    "cosine_distance": 0.5546578861953999
+  },
+  {
+    "idea1_index": 14,
+    "idea2_index": 15,
+    "idea1_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.4449231994220355,
+    "cosine_distance": 0.5550768005779645
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 15,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.4448043214809803,
+    "cosine_distance": 0.5551956785190197
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 11,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.4445636298863745,
+    "cosine_distance": 0.5554363701136256
+  },
+  {
+    "idea1_index": 13,
+    "idea2_index": 17,
+    "idea1_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.44428124078813375,
+    "cosine_distance": 0.5557187592118662
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 11,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.4441412972439553,
+    "cosine_distance": 0.5558587027560447
+  },
+  {
+    "idea1_index": 16,
+    "idea2_index": 17,
+    "idea1_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.44401422424339076,
+    "cosine_distance": 0.5559857757566092
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 8,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.4440037148590221,
+    "cosine_distance": 0.5559962851409779
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 15,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.4438315354550068,
+    "cosine_distance": 0.5561684645449931
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 4,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "similarity_score": 0.4437746354690499,
+    "cosine_distance": 0.5562253645309501
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 12,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.4432281951347751,
+    "cosine_distance": 0.5567718048652248
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 15,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.443172911566755,
+    "cosine_distance": 0.556827088433245
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 17,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.44307294092811006,
+    "cosine_distance": 0.55692705907189
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 7,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.44230069259128707,
+    "cosine_distance": 0.5576993074087129
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 13,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.44204860119521583,
+    "cosine_distance": 0.5579513988047842
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 12,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "similarity_score": 0.4402766911273866,
+    "cosine_distance": 0.5597233088726135
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 6,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.4389755890746936,
+    "cosine_distance": 0.5610244109253064
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 14,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.43553655841540756,
+    "cosine_distance": 0.5644634415845924
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 11,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.4332302081591655,
+    "cosine_distance": 0.5667697918408345
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 6,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "similarity_score": 0.43257478239877556,
+    "cosine_distance": 0.5674252176012244
+  },
+  {
+    "idea1_index": 4,
+    "idea2_index": 18,
+    "idea1_text": "Take the open bag to the highest attainable altitude or into outer space, allowing the air inside to...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.4296350679500484,
+    "cosine_distance": 0.5703649320499515
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 14,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.4282508912287022,
+    "cosine_distance": 0.5717491087712978
+  },
+  {
+    "idea1_index": 9,
+    "idea2_index": 18,
+    "idea1_text": "Fill the bag with a massive volume of a dielectric, fuzzy material like wool. Use a Van de Graaff ge...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.42794003988286633,
+    "cosine_distance": 0.5720599601171337
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 10,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.4254819686574184,
+    "cosine_distance": 0.5745180313425816
+  },
+  {
+    "idea1_index": 12,
+    "idea2_index": 18,
+    "idea1_text": "Use a parabolic solar furnace to heat a large block of graphite to several thousand degrees until it...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.42167691167243865,
+    "cosine_distance": 0.5783230883275614
+  },
+  {
+    "idea1_index": 14,
+    "idea2_index": 17,
+    "idea1_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.4194511493139971,
+    "cosine_distance": 0.5805488506860029
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 17,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.4191016714661991,
+    "cosine_distance": 0.580898328533801
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 3,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "similarity_score": 0.4180138488356226,
+    "cosine_distance": 0.5819861511643774
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 7,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.41721704511655683,
+    "cosine_distance": 0.5827829548834431
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 18,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.4170008801491842,
+    "cosine_distance": 0.5829991198508158
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 17,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.41206969572970914,
+    "cosine_distance": 0.5879303042702908
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 11,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.41098478931536014,
+    "cosine_distance": 0.5890152106846398
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 14,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.40883326302024964,
+    "cosine_distance": 0.5911667369797504
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 13,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.40492418007459857,
+    "cosine_distance": 0.5950758199254014
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 11,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.4047878313631874,
+    "cosine_distance": 0.5952121686368126
+  },
+  {
+    "idea1_index": 3,
+    "idea2_index": 8,
+    "idea1_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "idea2_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "similarity_score": 0.40462068823840647,
+    "cosine_distance": 0.5953793117615935
+  },
+  {
+    "idea1_index": 8,
+    "idea2_index": 10,
+    "idea1_text": "Get inside the bag and seal it, leaving a small opening for a reinforced hose connected to a water p...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.40320176720737533,
+    "cosine_distance": 0.5967982327926247
+  },
+  {
+    "idea1_index": 15,
+    "idea2_index": 17,
+    "idea1_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.402178198631806,
+    "cosine_distance": 0.597821801368194
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 16,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Create a large pouch from a strong, semi-permeable membrane and fill it with a highly concentrated b...",
+    "similarity_score": 0.39833837732239896,
+    "cosine_distance": 0.601661622677601
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 14,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Place two large tanks inside the bag, one positioned above the other. Connect them with a pipe that ...",
+    "similarity_score": 0.39669187350100465,
+    "cosine_distance": 0.6033081264989953
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 2,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "similarity_score": 0.3948197099258945,
+    "cosine_distance": 0.6051802900741055
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 7,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.39444084475983676,
+    "cosine_distance": 0.6055591552401632
+  },
+  {
+    "idea1_index": 6,
+    "idea2_index": 10,
+    "idea1_text": "Seal the bag at sea level, trapping normal atmospheric pressure (14.7 psi) inside. Travel to a locat...",
+    "idea2_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "similarity_score": 0.39273024083927816,
+    "cosine_distance": 0.6072697591607219
+  },
+  {
+    "idea1_index": 10,
+    "idea2_index": 13,
+    "idea1_text": "Place a large, perfectly balanced gyroscope inside the bag. Use an external motor to spin it up to a...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.39007425451336686,
+    "cosine_distance": 0.6099257454866331
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 3,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Place a massive, perfectly cast bell inside the bag. Strike it with a heavy mallet to set it vibrati...",
+    "similarity_score": 0.38924717748898924,
+    "cosine_distance": 0.6107528225110108
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 17,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.3831405234374477,
+    "cosine_distance": 0.6168594765625524
+  },
+  {
+    "idea1_index": 1,
+    "idea2_index": 18,
+    "idea1_text": "Fill the bag almost completely with a dense non-Newtonian fluid, like a cornstarch and water slurry ...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.3753558520422443,
+    "cosine_distance": 0.6246441479577557
+  },
+  {
+    "idea1_index": 17,
+    "idea2_index": 18,
+    "idea1_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.3744357892932255,
+    "cosine_distance": 0.6255642107067745
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 13,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "similarity_score": 0.36970967464137633,
+    "cosine_distance": 0.6302903253586236
+  },
+  {
+    "idea1_index": 5,
+    "idea2_index": 11,
+    "idea1_text": "Securely attach a long, rigid pole to the exterior of the bag. After getting inside, have an externa...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.36719949871634566,
+    "cosine_distance": 0.6328005012836544
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 7,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "similarity_score": 0.3670429338289839,
+    "cosine_distance": 0.6329570661710161
+  },
+  {
+    "idea1_index": 0,
+    "idea2_index": 11,
+    "idea1_text": "Anchor the bag at the bottom of a deep mineshaft. Place a multi-ton block of tungsten inside. When y...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.3609781570696424,
+    "cosine_distance": 0.6390218429303576
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 17,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Construct a large, insulated box and paint its interior with a near-perfect black-body material like...",
+    "similarity_score": 0.3539012950036496,
+    "cosine_distance": 0.6460987049963505
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 15,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.34597744528931285,
+    "cosine_distance": 0.6540225547106872
+  },
+  {
+    "idea1_index": 2,
+    "idea2_index": 18,
+    "idea1_text": "Procure a large, well-insulated Dewar flask that fits inside the bag and fill it with liquid nitroge...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.34582844233620963,
+    "cosine_distance": 0.6541715576637903
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 18,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Place a massive Archimedes' screw inside the bag, leaving only the hand crank exposed. Lower the bag...",
+    "similarity_score": 0.33715614248800047,
+    "cosine_distance": 0.6628438575119995
+  },
+  {
+    "idea1_index": 13,
+    "idea2_index": 15,
+    "idea1_text": "Completely fill a hardened steel container with water, ensuring there are no air bubbles, and seal i...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.3188289066595428,
+    "cosine_distance": 0.6811710933404572
+  },
+  {
+    "idea1_index": 7,
+    "idea2_index": 11,
+    "idea1_text": "Tie one end of an extremely long spool of rope to an anchor point and feed the entire spool into the...",
+    "idea2_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "similarity_score": 0.31265874985388553,
+    "cosine_distance": 0.6873412501461145
+  },
+  {
+    "idea1_index": 11,
+    "idea2_index": 15,
+    "idea1_text": "Prepare two reactive chemicals separated by a membrane that dissolves at a known rate (e.g., a speci...",
+    "idea2_text": "Construct a sail of enormous surface area from an ultralight material and attach its rigging directl...",
+    "similarity_score": 0.2900941980862135,
+    "cosine_distance": 0.7099058019137865
+  }
+]

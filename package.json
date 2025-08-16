@@ -1,0 +1,12 @@
+{
+  "name": "supercharge-similarity-test",
+  "version": "1.0.0",
+  "description": "Web interface for testing SuperCharge game similarity ratings",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "author": "",
+  "license": "MIT"
+}
