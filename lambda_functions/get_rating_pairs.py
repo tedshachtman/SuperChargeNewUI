@@ -11,14 +11,23 @@ def lambda_handler(event, context):
     try:
         # Parse request
         user_id = event['queryStringParameters']['userId']
+        room_id = event['queryStringParameters'].get('roomId')  # Optional for room-based games
         today = datetime.now().strftime('%Y-%m-%d')
         
-        # Get all submissions for today (excluding user's own)
-        response = submissions_table.query(
-            IndexName='date-index',
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('date').eq(today)
-        )
+        # Get submissions - either room-based or global
+        if room_id:
+            # Room-based: get all submissions for this room
+            response = submissions_table.scan(
+                FilterExpression=boto3.dynamodb.conditions.Attr('roomId').eq(room_id)
+            )
+        else:
+            # Global: get all submissions for today
+            response = submissions_table.query(
+                IndexName='date-index',
+                KeyConditionExpression=boto3.dynamodb.conditions.Key('date').eq(today)
+            )
         
+        # Exclude user's own submissions
         all_submissions = [item for item in response['Items'] if item['userId'] != user_id]
         
         if len(all_submissions) < 2:
@@ -36,11 +45,19 @@ def lambda_handler(event, context):
             }
         
         # Get user's existing ratings to avoid duplicates
-        user_ratings = ratings_table.query(
-            IndexName='user-date-index',
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id) & 
-                                 boto3.dynamodb.conditions.Key('date').eq(today)
-        )
+        if room_id:
+            # Room-based: get ratings for this room
+            user_ratings = ratings_table.scan(
+                FilterExpression=boto3.dynamodb.conditions.Attr('userId').eq(user_id) & 
+                               boto3.dynamodb.conditions.Attr('roomId').eq(room_id)
+            )
+        else:
+            # Global: get ratings for today
+            user_ratings = ratings_table.query(
+                IndexName='user-date-index',
+                KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id) & 
+                                     boto3.dynamodb.conditions.Key('date').eq(today)
+            )
         
         rated_pairs = set()
         for rating in user_ratings['Items']:

@@ -2,10 +2,50 @@ import json
 import boto3
 from datetime import datetime
 import uuid
+import requests
+import os
+from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
 submissions_table = dynamodb.Table('supercharged_submissions')
 progress_table = dynamodb.Table('supercharged_user_progress')
+
+def generate_embeddings(ideas):
+    """Generate embeddings for ideas using OpenAI API"""
+    try:
+        # Use OpenAI API key from environment
+        api_key = os.environ.get('OPENAI_API_KEY')
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY environment variable is required")
+        
+        url = "https://api.openai.com/v1/embeddings"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        # Combine all 4 ideas into one text for submission-level embedding
+        combined_text = " ".join(ideas)
+        
+        data = {
+            "input": combined_text,
+            "model": "text-embedding-3-large"
+        }
+        
+        response = requests.post(url, headers=headers, json=data, timeout=30)
+        response.raise_for_status()
+        
+        result = response.json()
+        if 'data' in result and len(result['data']) > 0:
+            # Convert float list to Decimal list for DynamoDB
+            embedding = result['data'][0]['embedding']
+            return [Decimal(str(float(x))) for x in embedding]
+        
+        return None
+        
+    except Exception as e:
+        print(f"Error generating embeddings: {str(e)}")
+        return None
 
 def lambda_handler(event, context):
     try:
@@ -13,6 +53,7 @@ def lambda_handler(event, context):
         body = json.loads(event['body'])
         user_id = body['userId']
         superpower_id = body['superpowerId']
+        room_id = body.get('roomId')  # Optional - for room-based games
         ideas = body['ideas']  # Array of 4 ideas
         
         # Validate ideas
@@ -49,28 +90,71 @@ def lambda_handler(event, context):
         
         today = datetime.now().strftime('%Y-%m-%d')
         now = datetime.now()
+        current_timestamp = int(now.timestamp())
         
-        # Check if it's past 11:59 PM
-        if now.hour == 23 and now.minute >= 59:
-            return {
-                'statusCode': 400,
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-                },
-                'body': json.dumps({
-                    'success': False,
-                    'error': 'Submission deadline has passed for today'
-                })
-            }
-        
-        # Check if user already submitted for today
-        existing_submissions = submissions_table.query(
-            IndexName='user-date-index',
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id) & 
-                                 boto3.dynamodb.conditions.Key('date').eq(today)
-        )
+        # Handle room-based vs global submissions differently
+        if room_id:
+            # Room-based submission - check room deadline
+            rooms_table = dynamodb.Table('supercharged_rooms')
+            room_response = rooms_table.get_item(Key={'roomId': room_id})
+            if not room_response.get('Item'):
+                return {
+                    'statusCode': 404,
+                    'headers': {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type',
+                        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                    },
+                    'body': json.dumps({
+                        'success': False,
+                        'error': 'Room not found'
+                    })
+                }
+            
+            room = room_response['Item']
+            submission_deadline = room.get('submissionDeadline', 0)
+            
+            if current_timestamp > submission_deadline:
+                return {
+                    'statusCode': 400,
+                    'headers': {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type',
+                        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                    },
+                    'body': json.dumps({
+                        'success': False,
+                        'error': 'Submission deadline has passed for this room'
+                    })
+                }
+            
+            # Check if user already submitted for this room
+            existing_submissions = submissions_table.scan(
+                FilterExpression=boto3.dynamodb.conditions.Attr('userId').eq(user_id) & 
+                               boto3.dynamodb.conditions.Attr('roomId').eq(room_id)
+            )
+        else:
+            # Global submission - check daily deadline
+            if now.hour == 23 and now.minute >= 59:
+                return {
+                    'statusCode': 400,
+                    'headers': {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type',
+                        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                    },
+                    'body': json.dumps({
+                        'success': False,
+                        'error': 'Submission deadline has passed for today'
+                    })
+                }
+            
+            # Check if user already submitted for today
+            existing_submissions = submissions_table.query(
+                IndexName='user-date-index',
+                KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id) & 
+                                     boto3.dynamodb.conditions.Key('date').eq(today)
+            )
         
         if existing_submissions['Items']:
             return {
@@ -90,6 +174,9 @@ def lambda_handler(event, context):
         submission_id = str(uuid.uuid4())
         timestamp = int(now.timestamp())
         
+        # Generate embeddings for the ideas
+        embeddings = generate_embeddings(ideas)
+        
         submission_item = {
             'submissionId': submission_id,
             'userId': user_id,
@@ -99,6 +186,14 @@ def lambda_handler(event, context):
             'timestamp': timestamp,
             'submittedAt': now.isoformat()
         }
+        
+        # Add embeddings if successfully generated
+        if embeddings:
+            submission_item['embeddings'] = embeddings
+        
+        # Add roomId if this is a room-based submission
+        if room_id:
+            submission_item['roomId'] = room_id
         
         submissions_table.put_item(Item=submission_item)
         

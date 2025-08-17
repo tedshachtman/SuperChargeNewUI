@@ -1,30 +1,53 @@
-# Dependencies
+# Environment variables and secrets
+.env
+*.env
+.env.local
+.env.production
+
+# API Keys and sensitive data
+*.key
+*.pem
+*_secret*
+*_private*
+
+# AWS credentials
+.aws/
+aws-exports.js
+
+# Lambda deployment packages
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node modules
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Production builds
-build/
-dist/
-out/
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-env.local
-env.development.local
-env.test.local
-env.production.local
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
+# Logs
+*.log
+logs/
 
 # OS generated files
 .DS_Store
@@ -35,19 +58,17 @@ env.production.local
 ehthumbs.db
 Thumbs.db
 
-# Logs
-logs
-*.log
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Temporary folders
+# Temporary files
 tmp/
 temp/
+*.tmp
+*.temp
+
+# Response files from testing
+response.json

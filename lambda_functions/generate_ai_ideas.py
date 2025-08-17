@@ -6,7 +6,8 @@ import uuid
 import re
 
 # Configure Gemini
-genai.configure(api_key="AIzaSyBhCFFPFv_qhhnkKp1GfM2MJ_bM1ZeISpg")
+import os
+genai.configure(api_key=os.environ.get('GEMINI_API_KEY'))
 
 dynamodb = boto3.resource('dynamodb')
 submissions_table = dynamodb.Table('supercharged_submissions')

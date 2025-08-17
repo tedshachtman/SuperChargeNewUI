@@ -47,6 +47,11 @@ LAMBDA_FUNCTIONS = [
         'name': 'supercharged-admin-list-submissions',
         'file': 'admin_list_submissions.py',
         'description': 'List all submissions for admin interface'
+    },
+    {
+        'name': 'supercharged-admin-delete-superpower',
+        'file': 'admin_delete_superpower.py',
+        'description': 'Delete superpower and related submissions'
     }
 ]
 

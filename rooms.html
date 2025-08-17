@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Rooms - SuperCharge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .custom-power-fields {
+            display: none;
+        }
+
+        .custom-power-fields.show {
+            display: block;
+        }
+
+        .difficulty-select {
+            display: none;
+        }
+
+        .difficulty-select.show {
+            display: block;
+        }
+
+        .status-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .status-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .user-rooms {
+            grid-column: 1 / -1;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .room-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .room-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .room-status.active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .room-status.waiting {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .room-status.completed {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .room-status.expired {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .game-code {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            background-color: #f0f2ff;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Custom Rooms</h1>
+            <p>Create private games with friends or join existing rooms</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="cloth.html">📅 Daily Challenge</a>
+            <a href="admin.html">⚙️ Admin</a>
+            <a href="admin-submissions.html">📊 View Submissions</a>
+        </div>
+
+        <div class="main-content">
+            <!-- Create Room Card -->
+            <div class="card">
+                <h2>🚀 Create New Room</h2>
+                <form id="createRoomForm">
+                    <div class="form-group">
+                        <label for="roomName">Room Name</label>
+                        <input type="text" id="roomName" placeholder="Epic Creativity Battle" maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Power Type</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="powerCustom" name="powerType" value="custom">
+                                <label for="powerCustom">Custom Power</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="powerAuto" name="powerType" value="auto" checked>
+                                <label for="powerAuto">Auto-Generated</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="difficulty-select show" id="difficultySelect">
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty Level</label>
+                            <select id="difficulty">
+                                <option value="easy">🟢 Easy - Simple, straightforward powers</option>
+                                <option value="medium" selected>🟡 Medium - Complex powers requiring strategy</option>
+                                <option value="hard">🔴 Hard - Advanced powers with deep limitations</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="custom-power-fields" id="customPowerFields">
+                        <div class="form-group">
+                            <label for="customTitle">Power Title</label>
+                            <input type="text" id="customTitle" placeholder="Ultimate Time Control" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="customDescription">Power Description</label>
+                            <textarea id="customDescription" placeholder="You have the ability to..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button" id="createRoomBtn">Create Room</button>
+                    <div id="createRoomStatus" class="status-message" style="display: none;"></div>
+                </form>
+            </div>
+
+            <!-- Join Room Card -->
+            <div class="card">
+                <h2>🔗 Join Room</h2>
+                <form id="joinRoomForm">
+                    <div class="form-group">
+                        <label for="gameCode">Game Code</label>
+                        <input type="text" id="gameCode" placeholder="ABC123" maxlength="6" style="text-transform: uppercase;">
+                    </div>
+
+                    <button type="submit" class="button" id="joinRoomBtn">Join Room</button>
+                    <div id="joinRoomStatus" class="status-message" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- User's Rooms -->
+        <div class="card user-rooms">
+            <h2>📋 Your Rooms</h2>
+            <div id="roomsContainer">
+                <p>Loading your rooms...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://gsx73a1w3d.execute-api.us-east-1.amazonaws.com/prod';
+        let currentUserId = localStorage.getItem('supercharge_userId') || prompt('Enter your username:');
+
+        if (currentUserId) {
+            localStorage.setItem('supercharge_userId', currentUserId);
+        }
+
+        // Power type radio button handling
+        document.querySelectorAll('input[name="powerType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const customFields = document.getElementById('customPowerFields');
+                const difficultySelect = document.getElementById('difficultySelect');
+                
+                if (this.value === 'custom') {
+                    customFields.classList.add('show');
+                    difficultySelect.classList.remove('show');
+                } else {
+                    customFields.classList.remove('show');
+                    difficultySelect.classList.add('show');
+                }
+            });
+        });
+
+        // Auto-uppercase game code input
+        document.getElementById('gameCode').addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+
+        // Create Room Form
+        document.getElementById('createRoomForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const roomName = document.getElementById('roomName').value || 'Private Room';
+            const powerType = document.querySelector('input[name="powerType"]:checked').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const customTitle = document.getElementById('customTitle').value;
+            const customDescription = document.getElementById('customDescription').value;
+            
+            // Validation
+            if (powerType === 'custom' && (!customTitle || !customDescription)) {
+                showStatus('createRoomStatus', 'Please fill in both custom power title and description', 'error');
+                return;
+            }
+            
+            const createBtn = document.getElementById('createRoomBtn');
+            createBtn.disabled = true;
+            createBtn.textContent = 'Creating Room...';
+            
+            try {
+                const requestBody = {
+                    userId: currentUserId,
+                    roomName: roomName,
+                    powerType: powerType,
+                    difficulty: difficulty
+                };
+                
+                if (powerType === 'custom') {
+                    requestBody.customTitle = customTitle;
+                    requestBody.customDescription = customDescription;
+                }
+                
+                const response = await fetch(`${API_BASE}/rooms/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showStatus('createRoomStatus', `Room created! Game Code: ${result.gameCode}`, 'success');
+                    document.getElementById('createRoomForm').reset();
+                    document.querySelector('input[name="powerType"][value="auto"]').checked = true;
+                    document.getElementById('customPowerFields').classList.remove('show');
+                    document.getElementById('difficultySelect').classList.add('show');
+                    
+                    // Refresh rooms list
+                    setTimeout(() => {
+                        loadUserRooms();
+                    }, 1000);
+                } else {
+                    showStatus('createRoomStatus', result.error || 'Failed to create room', 'error');
+                }
+            } catch (error) {
+                showStatus('createRoomStatus', 'Network error. Please try again.', 'error');
+            } finally {
+                createBtn.disabled = false;
+                createBtn.textContent = 'Create Room';
+            }
+        });
+
+        // Join Room Form
+        document.getElementById('joinRoomForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const gameCode = document.getElementById('gameCode').value.trim().toUpperCase();
+            
+            if (!gameCode || gameCode.length !== 6) {
+                showStatus('joinRoomStatus', 'Please enter a valid 6-character game code', 'error');
+                return;
+            }
+            
+            const joinBtn = document.getElementById('joinRoomBtn');
+            joinBtn.disabled = true;
+            joinBtn.textContent = 'Joining Room...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/rooms/join`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: currentUserId,
+                        gameCode: gameCode
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showStatus('joinRoomStatus', `Successfully joined "${result.roomName}"!`, 'success');
+                    document.getElementById('joinRoomForm').reset();
+                    
+                    // Refresh rooms list
+                    setTimeout(() => {
+                        loadUserRooms();
+                    }, 1000);
+                } else {
+                    showStatus('joinRoomStatus', result.error || 'Failed to join room', 'error');
+                }
+            } catch (error) {
+                showStatus('joinRoomStatus', 'Network error. Please try again.', 'error');
+            } finally {
+                joinBtn.disabled = false;
+                joinBtn.textContent = 'Join Room';
+            }
+        });
+
+        // Load user's rooms
+        async function loadUserRooms() {
+            try {
+                const response = await fetch(`${API_BASE}/rooms/list?userId=${currentUserId}`);
+                const result = await response.json();
+                
+                const container = document.getElementById('roomsContainer');
+                
+                if (response.ok && result.rooms.length > 0) {
+                    container.innerHTML = '<div class="rooms-grid">' + 
+                        result.rooms.map(room => createRoomCard(room)).join('') +
+                        '</div>';
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: #666;">No rooms found. Create or join a room to get started!</p>';
+                }
+            } catch (error) {
+                document.getElementById('roomsContainer').innerHTML = '<p style="text-align: center; color: #d32f2f;">Error loading rooms</p>';
+            }
+        }
+
+        function createRoomCard(room) {
+            const timeRemaining = room.timeRemaining > 0 ? formatTimeRemaining(room.timeRemaining) : 'Expired';
+            
+            return `
+                <div class="room-card">
+                    <div class="room-header">
+                        <h3>${room.roomName}</h3>
+                        <span class="room-status ${room.status}">${room.status}</span>
+                    </div>
+                    <div class="game-code">${room.gameCode}</div>
+                    <p><strong>Power:</strong> ${room.superpower.title}</p>
+                    <p><strong>Members:</strong> ${room.memberCount}/${room.maxPlayers}</p>
+                    <p><strong>Created by:</strong> ${room.createdBy} ${room.userRole === 'creator' ? '(You)' : ''}</p>
+                    ${room.status !== 'expired' && room.status !== 'completed' ? 
+                        `<p><strong>Time left:</strong> ${timeRemaining}</p>` : ''}
+                    ${room.status === 'active' || room.status === 'waiting' ? 
+                        `<button class="button" onclick="playRoom('${room.roomId}')" style="margin-top: 15px;">Enter Room</button>` : ''}
+                </div>
+            `;
+        }
+
+        function formatTimeRemaining(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            
+            if (hours > 0) {
+                return `${hours}h ${minutes}m`;
+            } else if (minutes > 0) {
+                return `${minutes}m`;
+            } else {
+                return 'Less than 1m';
+            }
+        }
+
+        function playRoom(roomId) {
+            // Store room ID and redirect to main game
+            localStorage.setItem('supercharge_roomId', roomId);
+            window.location.href = 'cloth.html?mode=room&roomId=' + roomId;
+        }
+
+        function showStatus(elementId, message, type) {
+            const statusEl = document.getElementById(elementId);
+            statusEl.textContent = message;
+            statusEl.className = `status-message ${type}`;
+            statusEl.style.display = 'block';
+            
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize
+        loadUserRooms();
+    </script>
+</body>
+</html>

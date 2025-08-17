@@ -90,7 +90,7 @@ def deploy_gemini_lambda():
             MemorySize=512,
             Environment={
                 'Variables': {
-                    'GEMINI_API_KEY': 'AIzaSyBhCFFPFv_qhhnkKp1GfM2MJ_bM1ZeISpg'
+                    'GEMINI_API_KEY': os.environ.get('GEMINI_API_KEY', 'your-gemini-api-key-here')
                 }
             }
         )

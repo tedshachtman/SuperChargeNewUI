@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Code - Idea Rating</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .status-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .user-input {
+            margin-bottom: 30px;
+        }
+
+        .user-input input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .user-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .comparison-container {
+            display: none;
+            margin-bottom: 30px;
+        }
+
+        .comparison-container.active {
+            display: block;
+        }
+
+        .idea-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .idea-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .idea-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .idea-text {
+            line-height: 1.6;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .rating-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-question {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .rating-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-btn {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #e1e5e9;
+            border-radius: 50%;
+            background: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .rating-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #e8f5e8;
+            border-left: 5px solid #28a745;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .feedback-text {
+            color: #666;
+        }
+
+        .completed-message {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .completed-message.show {
+            display: block;
+        }
+
+        .completed-message h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .session-summary {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .idea-pair {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .rating-buttons {
+                gap: 10px;
+            }
+            
+            .rating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Cloud Code</h1>
+            <p>AI-Powered Idea Rating System</p>
+            
+            <div class="nav-links">
+                <a href="cloth.html">📅 Daily Challenge</a>
+                <a href="rooms.html">🎮 Custom Rooms</a>
+                <a href="admin.html">⚙️ Admin</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-label">Ratings Done</div>
+                    <div class="status-value" id="ratingsCount">0</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Remaining</div>
+                    <div class="status-value" id="ratingsRemaining">5</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Avg Points</div>
+                    <div class="status-value" id="avgPoints">--</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Total Score</div>
+                    <div class="status-value" id="totalScore">0</div>
+                </div>
+            </div>
+
+            <!-- User Input -->
+            <div class="user-input" id="userInput">
+                <input type="text" id="userId" placeholder="Enter your username to start rating ideas..." maxlength="50">
+                <button class="submit-btn" onclick="startRating()" style="margin-top: 15px; width: 100%;">Start Rating</button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading" id="loadingState" style="display: none;">
+                Loading next pair of ideas...
+            </div>
+
+            <!-- Comparison Container -->
+            <div class="comparison-container" id="comparisonContainer">
+                <div class="idea-pair">
+                    <div class="idea-card">
+                        <h3>💡 Idea A</h3>
+                        <div class="idea-text" id="ideaAText">Loading...</div>
+                    </div>
+                    <div class="idea-card">
+                        <h3>💡 Idea B</h3>
+                        <div class="idea-text" id="ideaBText">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="rating-section">
+                    <div class="rating-question">How similar are these ideas?</div>
+                    
+                    <div class="rating-buttons">
+                        <button class="rating-btn" onclick="selectRating(1)">1</button>
+                        <button class="rating-btn" onclick="selectRating(2)">2</button>
+                        <button class="rating-btn" onclick="selectRating(3)">3</button>
+                        <button class="rating-btn" onclick="selectRating(4)">4</button>
+                        <button class="rating-btn" onclick="selectRating(5)">5</button>
+                    </div>
+                    
+                    <div class="rating-labels">
+                        <span>Very Different</span>
+                        <span>Very Similar</span>
+                    </div>
+                    
+                    <button class="submit-btn" id="submitRating" onclick="submitRating()" disabled>Submit Rating</button>
+                    
+                    <div class="feedback" id="feedback">
+                        <div class="feedback-score" id="feedbackScore"></div>
+                        <div class="feedback-text" id="feedbackText"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Message -->
+            <div class="completed-message" id="completedMessage">
+                <h2>🎉 Great Job!</h2>
+                <p>You've completed your daily 5 ratings. Your ratings help score novel ideas and improve the system.</p>
+                
+                <div class="session-summary">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Session Summary</h3>
+                    <div class="summary-stats" id="summaryStats">
+                        <!-- Summary stats will be populated here -->
+                    </div>
+                </div>
+                
+                <button class="submit-btn" onclick="location.reload()" style="margin-top: 25px;">Rate More Tomorrow</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://gsx73a1w3d.execute-api.us-east-1.amazonaws.com/prod';
+        
+        let currentUser = '';
+        let currentPair = null;
+        let selectedRating = null;
+        let sessionStats = {
+            ratingsCount: 0,
+            totalPoints: 0,
+            scores: []
+        };
+
+        // Auto-fill saved username
+        function checkSavedUser() {
+            const savedUserId = localStorage.getItem('cloudcode_userId');
+            if (savedUserId) {
+                document.getElementById('userId').value = savedUserId;
+            }
+        }
+
+        async function startRating() {
+            const userIdInput = document.getElementById('userId');
+            const userId = userIdInput.value.trim();
+            
+            if (!userId) {
+                alert('Please enter a username');
+                return;
+            }
+            
+            currentUser = userId;
+            localStorage.setItem('cloudcode_userId', userId);
+            
+            // Hide user input, show loading
+            document.getElementById('userInput').style.display = 'none';
+            document.getElementById('loadingState').style.display = 'block';
+            
+            await loadNextPair();
+        }
+
+        async function loadNextPair() {
+            try {
+                const response = await fetch(`${API_BASE}/cloudcode/next-pair?userId=${encodeURIComponent(currentUser)}`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    if (result.status === 'limit') {
+                        showCompleted();
+                        return;
+                    }
+                    
+                    currentPair = result;
+                    
+                    // Update status bar
+                    updateStatusBar(result);
+                    
+                    // Display the ideas
+                    document.getElementById('ideaAText').textContent = result.a_text;
+                    document.getElementById('ideaBText').textContent = result.b_text;
+                    
+                    // Reset rating selection
+                    resetRatingSelection();
+                    
+                    // Show comparison container
+                    document.getElementById('loadingState').style.display = 'none';
+                    document.getElementById('comparisonContainer').classList.add('active');
+                    
+                } else {
+                    throw new Error(result.error || 'Failed to load pair');
+                }
+                
+            } catch (error) {
+                console.error('Error loading next pair:', error);
+                alert('Error loading ideas. Please try again.');
+                location.reload();
+            }
+        }
+
+        function updateStatusBar(data) {
+            document.getElementById('ratingsCount').textContent = data.ratings_done || sessionStats.ratingsCount;
+            document.getElementById('ratingsRemaining').textContent = data.ratings_remaining || (5 - sessionStats.ratingsCount);
+            
+            if (sessionStats.scores.length > 0) {
+                const avgPoints = Math.round(sessionStats.totalPoints / sessionStats.scores.length);
+                document.getElementById('avgPoints').textContent = avgPoints;
+            }
+            
+            document.getElementById('totalScore').textContent = sessionStats.totalPoints;
+        }
+
+        function selectRating(rating) {
+            selectedRating = rating;
+            
+            // Update button states
+            document.querySelectorAll('.rating-btn').forEach((btn, index) => {
+                if (index + 1 === rating) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+            
+            // Enable submit button
+            document.getElementById('submitRating').disabled = false;
+        }
+
+        function resetRatingSelection() {
+            selectedRating = null;
+            document.querySelectorAll('.rating-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.getElementById('submitRating').disabled = true;
+            document.getElementById('feedback').classList.remove('show');
+        }
+
+        async function submitRating() {
+            if (!selectedRating || !currentPair) {
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitRating');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/cloudcode/rate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: currentUser,
+                        a_id: currentPair.a_id,
+                        b_id: currentPair.b_id,
+                        rating: selectedRating
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Update session stats
+                    sessionStats.ratingsCount++;
+                    sessionStats.totalPoints += result.points;
+                    sessionStats.scores.push(result.points);
+                    
+                    // Show feedback
+                    showFeedback(result.points, result.agreement_pct);
+                    
+                    // Update status bar
+                    updateStatusBar(result);
+                    
+                    // Delay before next pair
+                    setTimeout(() => {
+                        if (result.status === 'complete' || !result.next) {
+                            showCompleted();
+                        } else {
+                            loadNextFromResult(result.next);
+                        }
+                    }, 2500);
+                    
+                } else {
+                    throw new Error(result.error || 'Failed to submit rating');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting rating:', error);
+                alert('Error submitting rating. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Rating';
+            }
+        }
+
+        function loadNextFromResult(nextPair) {
+            currentPair = nextPair;
+            
+            // Display the ideas
+            document.getElementById('ideaAText').textContent = nextPair.a_text;
+            document.getElementById('ideaBText').textContent = nextPair.b_text;
+            
+            // Reset rating selection
+            resetRatingSelection();
+            document.getElementById('submitRating').textContent = 'Submit Rating';
+        }
+
+        function showFeedback(points, agreementPct) {
+            const feedbackEl = document.getElementById('feedback');
+            const scoreEl = document.getElementById('feedbackScore');
+            const textEl = document.getElementById('feedbackText');
+            
+            scoreEl.textContent = `Agreement: ${agreementPct}% • +${points} pts`;
+            
+            if (agreementPct >= 80) {
+                textEl.textContent = 'Excellent! You\'re very aligned with the consensus.';
+            } else if (agreementPct >= 60) {
+                textEl.textContent = 'Good agreement with other raters.';
+            } else if (agreementPct >= 40) {
+                textEl.textContent = 'Moderate agreement. Different perspectives help!';
+            } else {
+                textEl.textContent = 'Unique perspective! Diversity in ratings is valuable.';
+            }
+            
+            feedbackEl.classList.add('show');
+        }
+
+        function showCompleted() {
+            document.getElementById('comparisonContainer').classList.remove('active');
+            
+            // Update summary stats
+            const summaryEl = document.getElementById('summaryStats');
+            const avgPoints = sessionStats.scores.length > 0 ? 
+                Math.round(sessionStats.totalPoints / sessionStats.scores.length) : 0;
+            
+            summaryEl.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-value">${sessionStats.ratingsCount}</div>
+                    <div class="stat-label">Ideas Rated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${sessionStats.totalPoints}</div>
+                    <div class="stat-label">Total Points</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${avgPoints}</div>
+                    <div class="stat-label">Avg Points</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${Math.round(avgPoints * 0.8)}%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+            `;
+            
+            document.getElementById('completedMessage').classList.add('show');
+        }
+
+        // Initialize
+        checkSavedUser();
+    </script>
+</body>
+</html>

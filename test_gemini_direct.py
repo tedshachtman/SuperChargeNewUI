@@ -4,7 +4,9 @@ import requests
 import json
 import re
 
-GEMINI_API_KEY = "AIzaSyBhCFFPFv_qhhnkKp1GfM2MJ_bM1ZeISpg"
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY environment variable is required")
 
 def call_gemini_api(prompt):
     """Test Gemini API directly"""

@@ -8,7 +8,9 @@ import re
 dynamodb = boto3.resource('dynamodb')
 submissions_table = dynamodb.Table('supercharged_submissions')
 
-GEMINI_API_KEY = "AIzaSyBhCFFPFv_qhhnkKp1GfM2MJ_bM1ZeISpg"
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY environment variable is required")
 
 def lambda_handler(event, context):
     try:

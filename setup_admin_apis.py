@@ -137,6 +137,9 @@ def main():
     print("Creating admin endpoints...")
     create_method(superpowers_resource, 'GET')
     create_integration(superpowers_resource, 'GET', 'supercharged-admin-list-superpowers')
+    
+    create_method(superpowers_resource, 'DELETE')
+    create_integration(superpowers_resource, 'DELETE', 'supercharged-admin-delete-superpower')
     setup_cors(superpowers_resource)
     
     create_method(submissions_resource, 'GET')
@@ -155,6 +158,7 @@ Admin API endpoints added!
 
 New endpoints:
 - GET /admin/superpowers   - List all superpowers
+- DELETE /admin/superpowers - Delete superpower and related submissions
 - GET /admin/submissions   - List all submissions
 
 URLs:
